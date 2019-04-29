@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    font-family: 'Titillium Web', sans-serif;
+    background: rgb(149,197,87);
+    background: linear-gradient(90deg, rgba(149,197,87,1) 0%, rgba(145,197,88,1) 35%, rgba(91,188,145,1) 100%);
+    margin: 0 auto;
+    
+}
+
+

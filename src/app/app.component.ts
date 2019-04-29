@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'eunju-webshop-project';
+  title = 'eunju-webshop-project!';
+  
+  // showProduct: boolean = false;
+
+  // toggleProduct(){
+  //   this.showProduct = !this.showProduct;
+  // }
 }
