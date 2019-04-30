@@ -39,6 +39,9 @@ export class HomeComponent implements OnInit {
       )
            
       let actionFilms = this.products;
+
+     
+
       console.log(this.categorys[0].id)
 
       for(let i = 0; i < actionFilms.length; i++){
@@ -53,7 +56,7 @@ export class HomeComponent implements OnInit {
           if(this.categorys[0].id === childArray[j].categoryId) {
             this.products.push(actionFilms[i]);
            
-          } 
+          }
          
        
       }
