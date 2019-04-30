@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { IData } from '../interfaces/idata';
 import { IProduct } from '../interfaces/iproduct';
+
 import { Observable, of } from 'rxjs';
+import { ICategory } from '../interfaces/icategory';
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +62,21 @@ export class MockDataService implements IData{
     }]
   }];
 
+
+  categorys:ICategory[]=[{
+    id:5,
+    name: "action"
+  },{
+    id:6,
+    name: "thriller"
+  }];
+
   getData():Observable<IProduct[]> {
     return of(this.products);
   }
 
+  getCategory():Observable<ICategory[]> {
+    return of(this.categorys);
+  }
   constructor() { }
 }

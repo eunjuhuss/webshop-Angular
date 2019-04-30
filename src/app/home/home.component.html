@@ -23,7 +23,7 @@
 
 
 <div class="row" style="justify-content:center;">
-  <button class="btn btn-lg btn-info" (click)=fechAllProducts()>All</button>
+  <button class="btn btn-lg btn-info" (click)=ngOnInit()>All</button>
   <button class="btn btn-lg btn-info" (click)=Action()>Action</button>
   <button class="btn btn-lg btn-info">Thriller</button>
   <button class="btn btn-lg btn-info">Comedy</button>
@@ -42,4 +42,17 @@
 
   </div>
 </div>
-<p>{{actionFilms.id}}</p>
+
+<div class="row">
+  <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
+  <div class="col-md-2 product" *ngFor="let product of products">
+    <img class="filmsImg" src="{{product.imageUrl || '../images/placeholder.png'}}" alt={{product.name}}>
+    <div class="productNamePrice">
+      <p>{{product.name | slice:0:24}}</p>
+      <p>{{product.price}} sek</p>
+    </div>
+  </div>
+
+</div>
+
+

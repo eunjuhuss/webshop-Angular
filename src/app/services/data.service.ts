@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from '../interfaces/iproduct';
 import { IData } from '../interfaces/idata';
+import { ICategory } from '../interfaces/icategory';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,17 @@ import { IData } from '../interfaces/idata';
 export class DataService implements IData{
 
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
+  categoryUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/categories';
   
   constructor(private httpClient: HttpClient) { }
 
   getData(): Observable<IProduct[]> {  
-    return  this.httpClient.get<IProduct[]>(this.filmsUrl); 
-} 
+    return this.httpClient.get<IProduct[]>(this.filmsUrl); 
+ } 
 
+ getCategory(): Observable<ICategory[]> {  
+   return this.httpClient.get<ICategory[]>(this.categoryUrl); 
+} 
 
  
 
