@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit {
   // }
 
   Action() {
-    
-    
+  
     //rensat alla producter    
     //to match the productCategoryId and catergoryId     
     this.dataService.getCategory()
@@ -54,19 +53,15 @@ export class HomeComponent implements OnInit {
           console.log(childArray[j].categoryId);  
 
           if(this.categorys[0].id === childArray[j].categoryId) {
-            this.products.push(actionFilms[i]);
-           
+            this.products.push(actionFilms[i]); 
+
           }
-         
-       
+                
       }
-    
-       
-        // if(productCategoryId[i],productCategoryId[0].categoryId === checkingCategoryId[0].id) {
-        //   this.products.push(productCategoryId[i]);
-        // } 
+   
+      break; 
       }
-      
+     
       
     }
 
