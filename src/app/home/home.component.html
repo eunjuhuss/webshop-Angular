@@ -33,7 +33,7 @@
 <div class="row product-container">
   <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
   <div class="col-md-2 product" *ngFor="let product of products">
-    <img class="filmsImg" src="{{product.imageUrl || '../images/placeholder.png'}}" alt={{product.name}}>
+    <img class="filmsImg" src="{{product.imageUrl}}" alt={{product.name}}>
     <div class="productNamePrice">
       <p>{{product.name | slice:0:24}}</p>
       <p>{{product.price}} sek</p>
@@ -43,16 +43,6 @@
   </div>
 </div>
 
-<div class="row">
-  <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
-  <div class="col-md-2 product" *ngFor="let product of products">
-    <img class="filmsImg" src="{{product.imageUrl || '../images/placeholder.png'}}" alt={{product.name}}>
-    <div class="productNamePrice">
-      <p>{{product.name | slice:0:24}}</p>
-      <p>{{product.price}} sek</p>
-    </div>
-  </div>
 
-</div>
 
 

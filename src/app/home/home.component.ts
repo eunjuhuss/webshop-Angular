@@ -25,13 +25,13 @@ export class HomeComponent implements OnInit {
 
   Action() {
     
-    this.products=[]; 
+    
     //rensat alla producter    
     //to match the productCategoryId and catergoryId     
     this.dataService.getCategory()
       .subscribe(
         data => {this.categorys = data;
-          console.log("Success: ", this.categorys[0].id);
+          console.log("Success: ", this.categorys);
         },
         err => {
           console.log("Error : "+ err);
@@ -42,18 +42,22 @@ export class HomeComponent implements OnInit {
       console.log(this.categorys[0].id)
 
       for(let i = 0; i < actionFilms.length; i++){
+        this.products=[]; 
         console.log(actionFilms[i]);
         let childArray = actionFilms[i].productCategory;
         
         for(let j = 0; j < childArray.length; j++){
           console.log(childArray[j]);    
-          console.log(childArray[j].categoryId);     
-         
+          console.log(childArray[j].categoryId);  
+
           if(this.categorys[0].id === childArray[j].categoryId) {
-            this.products.push(childArray[j]);
+            this.products.push(actionFilms[i]);
+           console.log(childArray);
           } 
+         
        
       }
+    
        
         // if(productCategoryId[i],productCategoryId[0].categoryId === checkingCategoryId[0].id) {
         //   this.products.push(productCategoryId[i]);
