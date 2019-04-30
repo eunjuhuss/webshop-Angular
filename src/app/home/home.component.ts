@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
           if(this.categorys[0].id === childArray[j].categoryId) {
             this.products.push(actionFilms[i]);
-           console.log(childArray);
+           
           } 
          
        
