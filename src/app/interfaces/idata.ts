@@ -5,4 +5,5 @@ import { ICategory } from './icategory';
 export interface IData {
     getData(): Observable<IProduct[]>;
     getCategory(): Observable<ICategory[]>;
+    getMovie(id: number): Observable<IProduct>;
 }

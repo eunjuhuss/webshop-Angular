@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { ProductsDetailComponent } from './products-detail/products-detail.component';
 // variable need to skriv ovanpå @Ngmodule
 // router 2, routes라는 local variable에 넣고
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   // redirectTo Home if full url is empty
   { path: '', redirectTo:'/home', pathMatch: 'full'}, 
   { path: 'home', component: HomeComponent }, 
-  { path: 'detail', component: DetailComponent }, 
+  { path: 'detail/:id', component: ProductsDetailComponent },  
   { path: 'order', component: OrderComponent }, 
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -29,5 +30,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 // router 3, export해준다
-export const routingComponents = [HomeComponent,DetailComponent,OrderComponent,PageNotFoundComponent];
+export const routingComponents = [HomeComponent,OrderComponent,PageNotFoundComponent, ProductsDetailComponent];
 
