@@ -15,7 +15,9 @@ import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductsFilterPipe } from './services/products-filter.pipe'
+import { ProductsDetailComponent } from './products-detail/products-detail.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +25,11 @@ import { ProductsFilterPipe } from './services/products-filter.pipe'
     DetailComponent,
     OrderComponent,
     PageNotFoundComponent,
-    ProductsFilterPipe,
+ 
 
   //router 5, 디클라래이션에 라우팅컴퍼넌트를 넣어준다
     routingComponents,
-
-  ProductsFilterPipe
+    ProductsDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ import { ProductsFilterPipe } from './services/products-filter.pipe'
     AppRoutingModule  
     
   ],
-  providers: [ DataService, ProductsFilterPipe ],
+  providers: [ DataService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

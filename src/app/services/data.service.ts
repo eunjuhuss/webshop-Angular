@@ -12,7 +12,8 @@ export class DataService implements IData{
 
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
   categoryUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/categories';
-  
+  // productsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products/';
+
   constructor(private httpClient: HttpClient) { }
 
   getData(): Observable<IProduct[]> {  
@@ -22,6 +23,10 @@ export class DataService implements IData{
  getCategory(): Observable<ICategory[]> {  
    return this.httpClient.get<ICategory[]>(this.categoryUrl); 
 } 
+
+getMovie(id: number): Observable<IProduct>{
+  return this.httpClient.get<IProduct>(this.filmsUrl + '/'+ id); 
+}
 
  
 

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   public products = [];
   public categorys = [];
 
-  constructor(private dataService: MockDataService) { }
+  constructor(private dataService: DataService) { }
 
   // fechAllProducts() {
   //   this.dataService.getData()
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   // }
 
   Action() {
-  
+    
     //rensat alla producter    
     //to match the productCategoryId and catergoryId     
     this.dataService.getCategory()
@@ -39,27 +39,21 @@ export class HomeComponent implements OnInit {
            
       let actionFilms = this.products;
 
-     
-
-      console.log(this.categorys[0].id)
-
-      for(let i = 0; i < actionFilms.length; i++){
-        this.products=[]; 
+     // to empty efter for loop
+      this.products=[]; 
+      
+      for(let i = 0; i < actionFilms.length; i++){        
         console.log(actionFilms[i]);
-        let childArray = actionFilms[i].productCategory;
-        
+        let childArray = actionFilms[i].productCategory;        
         for(let j = 0; j < childArray.length; j++){
-          console.log(childArray[j]);    
-          console.log(childArray[j].categoryId);  
-
+          console.log(childArray[j].categoryId); 
           if(this.categorys[0].id === childArray[j].categoryId) {
             this.products.push(actionFilms[i]); 
-
           }
-                
+          
       }
    
-      break; 
+      // break; 
       }
      
       
