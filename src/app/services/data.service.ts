@@ -16,6 +16,9 @@ export class DataService implements IData{
 
   constructor(private httpClient: HttpClient) { }
 
+
+ 
+
   getData(): Observable<IProduct[]> {  
     return this.httpClient.get<IProduct[]>(this.filmsUrl); 
  } 

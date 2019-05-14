@@ -3,14 +3,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MockDataService } from '../services/mock-data.service'
 import { DataService } from '../services/data.service';
 import { IProduct } from '../interfaces/iproduct';
+
 @Component({
   selector: 'app-products-detail',
   templateUrl: './products-detail.component.html',
   styleUrls: ['./products-detail.component.css']
 })
 export class ProductsDetailComponent implements OnInit {
-  
-  public product: IProduct;
+  // it takes a time to fetch a detail product from url, so need to use this empty object
+  public product: IProduct = {    
+      id:null,
+      name:'',
+      description:'',
+      price:null,
+      imageUrl:'',
+      year:null,
+      added:'',
+      productCategory:[{
+        categoryId:null,
+        category:null
+      },
+      {
+        categoryId:null,
+        category:null
+      }]
+    };
+
+  private items: IProduct[] = [];
+  private total: number = 0;
   
   //inject
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { }
@@ -20,8 +40,10 @@ export class ProductsDetailComponent implements OnInit {
     //paramMap (from url)    
     //hämta products id from home html
     this.route.params.subscribe(params => {    //  Params      
-    const id = params['id'];
-    this.getProductsDetails(id);    
+    let id = params['id'];
+    
+    this.getProductsDetails(id); 
+
     });
   }
 
@@ -38,4 +60,4 @@ export class ProductsDetailComponent implements OnInit {
   
 }
   
-  
+

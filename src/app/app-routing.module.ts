@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 //router 1, importing pages that I created
 import { HomeComponent } from './home/home.component';
-import { DetailComponent } from './detail/detail.component';
+
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { ProductsDetailComponent } from './products-detail/products-detail.component';

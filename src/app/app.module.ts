@@ -10,37 +10,40 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { DetailComponent } from './detail/detail.component';
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailComponent,
     OrderComponent,
     PageNotFoundComponent,
  
 
   //router 5, 디클라래이션에 라우팅컴퍼넌트를 넣어준다
     routingComponents,
-    ProductsDetailComponent
+    ProductsDetailComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AngularFontAwesomeModule,
     
     
     
     
     HttpClientModule,
   //router 6, imports에 AppRoutingModule 를 넣어준다
-    AppRoutingModule  
+    AppRoutingModule
     
   ],
   providers: [ DataService ],

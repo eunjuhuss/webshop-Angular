@@ -4,6 +4,8 @@ import { DataService } from '../services/data.service';
 
 
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,53 +17,83 @@ export class HomeComponent implements OnInit {
   public products = [];
   public categorys = [];
 
+  public filtredProducts = [];
+
   constructor(private dataService: DataService) { }
 
-  // fechAllProducts() {
-  //   this.dataService.getData()
-  //     .subscribe(data => this.actionFilms = data);
-  //   console.log(this.actionFilms[0].id);
-  // }
+  findCategoryId(){
+    this.dataService.getCategory()
+    .subscribe(
+      data => {this.categorys = data;
+        console.log("Success: ", this.categorys);
+      },
+      err => {
+        console.log("Error : "+ err);
+      }     
+    )
+  }
 
-  Action() {
-    
+
+  displayAllProducts() {
+    this.dataService.getData()
+    .subscribe(data => {
+      this.products = data;
+      this.filtredProducts = this.products;
+    });
+
+  }
+
+  sortByCategories(event) {
+    console.log(event.target.id);
     //rensat alla producter    
     //to match the productCategoryId and catergoryId     
-    this.dataService.getCategory()
-      .subscribe(
-        data => {this.categorys = data;
-          console.log("Success: ", this.categorys);
-        },
-        err => {
-          console.log("Error : "+ err);
-        }     
-      )
-           
-      let actionFilms = this.products;
+    
+    //this.findCategoryId();   
 
-     // to empty efter for loop
-      this.products=[]; 
+    let sortById = this.products;
+    //let categoryId = this.categorys;
+   // to empty efter for loop
+    this.filtredProducts=[];
+    
+    for(let i = 0; i < sortById.length; i++){         
+      let childArray = sortById[i].productCategory;        
+      for(let j = 0; j < childArray.length; j++){
+        console.log(childArray[j]);          
+        if(event.target.id == childArray[j].categoryId){
+          // for(let c = 0; c < categoryId.length; c++){
+          //   if(categoryId[c].id === childArray[j].categoryId){
+              this.filtredProducts.push(sortById[i]); 
+              console.log(event.target.id);                    
+              }else {
+                console.log("no mached films");         
+              }         
+          //   }         
+          // }                      
+        }    
+      }       
+    }
+
+    
+    // public counter : number = 0;
+    
+    // add(item){
+    //   this.counter += 1;
+    //   console.log(item);
+    // }
+    
+    // delete(item){
+    //   if (this.counter > 0){
+    //     this.counter -= 1;
+    //   }
       
-      for(let i = 0; i < actionFilms.length; i++){        
-        console.log(actionFilms[i]);
-        let childArray = actionFilms[i].productCategory;        
-        for(let j = 0; j < childArray.length; j++){
-          console.log(childArray[j].categoryId); 
-          if(this.categorys[0].id === childArray[j].categoryId) {
-            this.products.push(actionFilms[i]); 
-          }
-          
-      }
-   
-      // break; 
-      }
-     
+    // }
+
+    ngOnInit() {
+      this.displayAllProducts();
+      // this.sortByCategories(event);
       
     }
 
-  ngOnInit() {
-    this.dataService.getData()
-    .subscribe(data => this.products = data);
-  }
+ 
 
 }

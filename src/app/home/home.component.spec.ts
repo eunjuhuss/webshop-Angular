@@ -5,6 +5,7 @@ import { DataService } from '../services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IProduct } from '../interfaces/iproduct';
+import { MockDataService } from '../services/mock-data.service'
 // import { of } from 'rxjs/observable/of';
 
 describe('HomeComponent', () => {
@@ -16,9 +17,10 @@ describe('HomeComponent', () => {
       declarations: [ HomeComponent ],
       imports: [ HttpClientModule, RouterTestingModule ]
     })
-    .compileComponents();
-  }));
+  .overrideComponent(HomeComponent, { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
+  .compileComponents();
 
+}));
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
@@ -35,7 +37,7 @@ describe('HomeComponent', () => {
   
     // fixture.detectChanges();
   
-    expect(component.products.length).toEqual(0);
+    expect(component.products.length).toEqual(3);
   }));
 
 

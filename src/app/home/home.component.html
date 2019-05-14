@@ -23,26 +23,24 @@
 
 
 <div class="row" style="justify-content:center;">
-  <button class="btn btn-lg btn-info" (click)=ngOnInit()>All</button>
-  <button class="btn btn-lg btn-info" (click)=Action()>Action</button>
-  <button class="btn btn-lg btn-info">Thriller</button>
-  <button class="btn btn-lg btn-info">Comedy</button>
-  <button class="btn btn-lg btn-info">Sci-fi</button>
+  {{counter}}
+  <button class="btn btn-lg btn-info" (click)=displayAllProducts()>All</button>
+  <button class="btn btn-lg btn-info" (click)=sortByCategories($event) id="5">Action</button>
+  <button class="btn btn-lg btn-info" (click)=sortByCategories($event) id="6">Thriller</button>
+  <button class="btn btn-lg btn-info" (click)=sortByCategories($event) id="7">Comedy</button>
+  <button class="btn btn-lg btn-info" (click)=sortByCategories($event) id="8">Sci-fi</button>
 </div>
 
 <div class="row product-container">
   <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
-  <div class="col-md-2 product" *ngFor="let product of products">
-    <img class="filmsImg" src="{{product.imageUrl}}" alt={{product.name}}>
-    <a routerLink="/detail/{{product.id}}">{{product.name}}</a>
-
-    <div class="productNamePrice">
-      <p>{{product.name | slice:0:24}}</p>
-      <p>{{product.price}} sek</p>
+  <div class="col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of filtredProducts">
+    <img class="films-img" src="{{product.imageUrl}}" alt={{product.name}}>
+    <div class="product-name-price">
+      <a routerLink="/detail/{{product?.id}}">{{product.name | uppercase | slice:0:18 }}</a>
+      <div class="row">
+      <p class="col-sm-6">{{product.price | currency:"$"}}</p>
+      <i class="col-sm-6 fas fa-cart-arrow-down "></i>
     </div>
   </div>
+  </div>
 </div>
-
-
-
-

@@ -4,22 +4,28 @@ import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('DataService', () => {
+  let service: DataService;
+  
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
      HttpClientModule      
-    ]
+    ],
+    providers: [DataService] 
   }));
 
   it('should be created', () => {
-    const service: DataService = TestBed.get(DataService);
+    service = TestBed.get(DataService);
     expect(service).toBeTruthy();
   });
 
   it('should return an Observable<IProduct[]> ', () => {
-    const service: DataService = TestBed.get(DataService);
+    service = TestBed.get(DataService);
     service.getData().subscribe(data => expect(data.length).toBe(32));
     });
 
-
+    it('should return an Observable<IProduct[]> ', () => {
+      const service: DataService = TestBed.get(DataService);
+      service.getCategory().subscribe(catergory => expect(catergory.length).toBe(4));
+      });
 
 });
