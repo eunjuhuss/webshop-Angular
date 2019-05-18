@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MockDataService } from '../services/mock-data.service';
 import { DataService } from '../services/data.service';
+import { IProduct } from '../interfaces/iproduct';
 
 
 
@@ -15,23 +16,24 @@ export class HomeComponent implements OnInit {
 
 
   public products = [];
-  public categorys = [];
+  // public categorys = [];
 
   public filtredProducts = [];
+  public productAddedTocart = [];
 
   constructor(private dataService: DataService) { }
 
-  findCategoryId(){
-    this.dataService.getCategory()
-    .subscribe(
-      data => {this.categorys = data;
-        console.log("Success: ", this.categorys);
-      },
-      err => {
-        console.log("Error : "+ err);
-      }     
-    )
-  }
+  // findCategoryId(){
+  //   this.dataService.getCategory()
+  //   .subscribe(
+  //     data => {this.categorys = data;
+  //       console.log("Success: ", this.categorys);
+  //     },
+  //     err => {
+  //       console.log("Error : "+ err);
+  //     }     
+  //   )
+  // }
 
 
   displayAllProducts() {
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
     .subscribe(data => {
       this.products = data;
       this.filtredProducts = this.products;
+      this.productAddedTocart = this.products;
     });
 
   }
@@ -54,7 +57,8 @@ export class HomeComponent implements OnInit {
     //let categoryId = this.categorys;
    // to empty efter for loop
     this.filtredProducts=[];
-    
+    console.log(this.filtredProducts);
+
     for(let i = 0; i < sortById.length; i++){         
       let childArray = sortById[i].productCategory;        
       for(let j = 0; j < childArray.length; j++){
@@ -63,6 +67,7 @@ export class HomeComponent implements OnInit {
           // for(let c = 0; c < categoryId.length; c++){
           //   if(categoryId[c].id === childArray[j].categoryId){
               this.filtredProducts.push(sortById[i]); 
+              console.log(sortById[i]);
               console.log(event.target.id);                    
               }else {
                 console.log("no mached films");         
@@ -72,6 +77,18 @@ export class HomeComponent implements OnInit {
         }    
       }       
     }
+
+  addToCart(product:any){
+      console.log(product);        
+      this.productAddedTocart=this.dataService.getProductFromCart();
+      if(this.productAddedTocart !== null)
+      {
+        this.dataService.addProductToCart(product);        
+        this.productAddedTocart.push(product);
+        this.dataService.addProductToCart(this.productAddedTocart);  
+      }
+
+  }
 
     
     // public counter : number = 0;

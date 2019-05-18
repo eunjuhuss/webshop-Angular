@@ -18,7 +18,7 @@ describe('ProductsDetailComponent', () => {
       imports: [ HttpClientModule, RouterTestingModule ]
     })
    
-    .overrideComponent(ProductsDetailComponent, { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
+  .overrideComponent(ProductsDetailComponent, { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
   .compileComponents();
 
   }));

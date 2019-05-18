@@ -83,5 +83,10 @@ export class MockDataService implements IData{
   getMovie(id: number): Observable<IProduct>{
     return of(this.products.find(x=>x.id===id));
   }
+
+  getProductFromCart():Observable<IProduct[]> {  
+    return of(this.products);
+  } 
+
   constructor() { }
 }

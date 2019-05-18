@@ -31,6 +31,22 @@ getMovie(id: number): Observable<IProduct>{
   return this.httpClient.get<IProduct>(this.filmsUrl + '/'+ id); 
 }
 
+
+
+addProductToCart(product:any){
+  localStorage.setItem("ShoppingCart", JSON.stringify(product));
+}
+
+getProductFromCart(){  
+  return JSON.parse(localStorage.getItem("ShoppingCart"));
+}
+
+removeAllProductFromCart(){  
+  return localStorage.removeItem("ShoppingCart");;
+}
+
+
+
  
 
 errorHandler(error: HttpErrorResponse){
