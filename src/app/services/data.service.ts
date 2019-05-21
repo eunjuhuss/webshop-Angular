@@ -42,12 +42,9 @@ getProductFromCart(){
 }
 
 removeAllProductFromCart(){  
-  return localStorage.removeItem("ShoppingCart");;
-}
-
-
-
+  localStorage.removeItem("ShoppingCart");
  
+}
 
 errorHandler(error: HttpErrorResponse){
   return Observable.throw(error.message || "Server Error");

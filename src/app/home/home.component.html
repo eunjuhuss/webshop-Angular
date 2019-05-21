@@ -39,7 +39,8 @@
       <a routerLink="/detail/{{product?.id}}">{{product.name | uppercase | slice:0:18 }}</a>
       <div class="row">
         <p class="col-sm-6">{{product.price | currency:"$"}}</p>
-        <i class="col-sm-6 fas fa-cart-arrow-down" (click)=addToCart(product)></i>
+        <i class="col-sm-3 fas fa-cart-arrow-down" (click)=addToCart(product)></i>
+        <i class="col-sm-3 fas fa-cart-arrow-down" (click)=removeItem(product)></i>
       </div>
     </div>
   </div>

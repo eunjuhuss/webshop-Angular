@@ -79,16 +79,27 @@ export class HomeComponent implements OnInit {
     }
 
   addToCart(product:any){
-      console.log(product);        
-      this.productAddedTocart=this.dataService.getProductFromCart();
+      console.log(product); 
+           
+      // this.productAddedTocart=this.dataService.getProductFromCart();
+      this.dataService.getProductFromCart();
       if(this.productAddedTocart !== null)
-      {
+      {        
         this.dataService.addProductToCart(product);        
         this.productAddedTocart.push(product);
         this.dataService.addProductToCart(this.productAddedTocart);  
       }
-
+      
   }
+
+  // removeItem(product: IProduct){
+  //   console.log(product.id);
+  //   this.productAddedTocart = this.dataService.getProductFromCart();
+
+  //   let items = this.productAddedTocart;
+ 
+
+  // }
 
     
     // public counter : number = 0;

@@ -1,0 +1,28 @@
+div{
+    border: 1px solid black;
+   
+}
+.detail_product{
+    width: 80%;
+    margin: 0 auto;
+    
+}
+.films_img{
+    width: 100%;
+}
+.product_description{
+    text-align: left;
+}
+
+.btn{
+    margin: 10px;
+}
+
+.detail_product_info{
+    margin-top: 20px; 
+    align-content: center;
+}
+
+.product_price{
+    text-align: center;
+}

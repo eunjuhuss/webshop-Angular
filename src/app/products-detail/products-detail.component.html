@@ -1,10 +1,19 @@
-<p>
-  products-detail works!
-</p>
+<div class="row detail_product">
 
-<h3>{{product.name}}</h3>
-<p> {{product.description}} </p>
-<img class="filmsImg" src="{{product.imageUrl}}" alt={{product.name}}>
+  <div class="col-md-12 col-lg-6">
+    <img class="films_img" src="{{product.imageUrl}}" alt={{product.name}}>
+  </div>
+  <div class="col-md-12 col-lg-6 detail_product_info">
+    <h3 class="col-sm-12">{{product.name}}</h3>
+    
+    <p class="col-md-6 col-lg-12 product_price">{{product.price  | currency:"$"}}</p>
+    <button class="col-sm-5 btn btn-sm btn-info">Add</button>
+    <button class="col-sm-5 btn btn-sm btn-info">Remove</button>
+    <div class="col-md-7 col-lg-12 detail_product_info">
+        <p> {{product.description}} </p>
+      </div>
+  </div>
 
-
-
+ 
+  
+</div>
