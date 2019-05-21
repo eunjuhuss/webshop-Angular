@@ -10,20 +10,21 @@ import { IProduct } from '../interfaces/iproduct';
 export class OrderComponent implements OnInit {
 
   public cart = [];
- 
+  
   constructor(private dataService: DataService) { }
 
-  emptyCart(){
-  this.dataService.removeAllProductFromCart();
-   return this.dataService.getProductFromCart();    
-  } 
- 
+
+  
+  removeItem(product){
+    let selsectedItem = this.cart;
+    console.log(selsectedItem);
+    
+    this.dataService.removeProductFromCart(product);
+    
+  }
 
   ngOnInit() {
-    this.cart = this.dataService.getProductFromCart();
-    console.log(this.cart);
-    
- 
+    this.cart = this.dataService.getProductFromCart();  
   }
 
 }

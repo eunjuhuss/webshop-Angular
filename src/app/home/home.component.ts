@@ -79,8 +79,7 @@ export class HomeComponent implements OnInit {
     }
 
   addToCart(product:any){
-      console.log(product); 
-           
+      console.log(product);
       // this.productAddedTocart=this.dataService.getProductFromCart();
       this.dataService.getProductFromCart();
       if(this.productAddedTocart !== null)
@@ -90,16 +89,12 @@ export class HomeComponent implements OnInit {
         this.dataService.addProductToCart(this.productAddedTocart);  
       }
       
+      
   }
 
-  // removeItem(product: IProduct){
-  //   console.log(product.id);
-  //   this.productAddedTocart = this.dataService.getProductFromCart();
-
-  //   let items = this.productAddedTocart;
- 
-
-  // }
+  removeItem(product){
+    this.dataService.removeProductFromCart(product);
+  }
 
     
     // public counter : number = 0;

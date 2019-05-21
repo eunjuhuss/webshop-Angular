@@ -41,10 +41,17 @@ getProductFromCart(){
   return JSON.parse(localStorage.getItem("ShoppingCart"));
 }
 
+removeProductFromCart(product){  
+  let findProduct = this.getProductFromCart();  
+  findProduct.splice(product, 1);
+  this.addProductToCart(findProduct);
+ }
+
+
 removeAllProductFromCart(){  
-  localStorage.removeItem("ShoppingCart");
- 
+  localStorage.removeItem("ShoppingCart"); 
 }
+
 
 errorHandler(error: HttpErrorResponse){
   return Observable.throw(error.message || "Server Error");
