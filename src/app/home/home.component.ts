@@ -23,17 +23,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  // findCategoryId(){
-  //   this.dataService.getCategory()
-  //   .subscribe(
-  //     data => {this.categorys = data;
-  //       console.log("Success: ", this.categorys);
-  //     },
-  //     err => {
-  //       console.log("Error : "+ err);
-  //     }     
-  //   )
-  // }
 
 
   displayAllProducts() {
@@ -78,18 +67,15 @@ export class HomeComponent implements OnInit {
       }       
     }
 
-  addToCart(product:any){
-      console.log(product);
-      // this.productAddedTocart=this.dataService.getProductFromCart();
-      this.dataService.getProductFromCart();
-      if(this.productAddedTocart !== null)
-      {        
-        this.dataService.addProductToCart(product);        
-        this.productAddedTocart.push(product);
-        this.dataService.addProductToCart(this.productAddedTocart);  
-      }
-      
-      
+
+
+ 
+
+     
+
+
+  addToCart(product:IProduct){
+    this.dataService.addProductToCart(product);         
   }
 
   removeItem(product){

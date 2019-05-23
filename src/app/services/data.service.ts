@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IProduct } from '../interfaces/iproduct';
 import { IData } from '../interfaces/idata';
 import { ICategory } from '../interfaces/icategory';
+import { ICart } from '../interfaces/ICart';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,11 @@ export class DataService implements IData{
 
  
 
-  getData(): Observable<IProduct[]> {  
+getData(): Observable<IProduct[]>{  
     return this.httpClient.get<IProduct[]>(this.filmsUrl); 
  } 
 
- getCategory(): Observable<ICategory[]> {  
+getCategory(): Observable<ICategory[]>{  
    return this.httpClient.get<ICategory[]>(this.categoryUrl); 
 } 
 
@@ -33,8 +34,18 @@ getMovie(id: number): Observable<IProduct>{
 
 
 
-addProductToCart(product:any){
-  localStorage.setItem("ShoppingCart", JSON.stringify(product));
+addProductToCart(product:IProduct){
+  let cart: ICart[] = this.getProductFromCart();
+  if(cart != null) {
+    for(let i = 0; i< cart.length; i++){
+      cart[i].amount++;
+    }
+    // cart.push({ product: product, amount: 1, total: 0});
+    localStorage.setItem("ShoppingCart", JSON.stringify(cart));    
+  }
+  else {
+    localStorage.setItem("ShoppingCart", JSON.stringify([{ product: product, amount: 1, total: 0}]));
+  }
 }
 
 getProductFromCart(){  

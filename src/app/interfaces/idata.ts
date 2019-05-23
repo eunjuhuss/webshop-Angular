@@ -6,6 +6,5 @@ export interface IData {
     getData(): Observable<IProduct[]>;
     getCategory(): Observable<ICategory[]>;
     getMovie(id: number): Observable<IProduct>;
-    getProductFromCart() : Observable<IProduct[]>;
-    
+    getProductFromCart(): Observable<IProduct[]>;       
 }
