@@ -72,17 +72,15 @@ getMovie(id: number): Observable<IProduct>{
 
 addProductToCart(product:IProduct){
   let cart: ICart[] = this.getProductFromCart();
-  let addedFilm = false;
+  let addedProduct = false;
   if(cart != null) {
     for(let i = 0; i < cart.length; i++){
       if(cart[i].product.id === product.id){
-        cart[i].amount++;
-        addedFilm = true;
-        cart[i].total += cart[i].product.price;               
+        cart[i].amount++;       
+        cart[i].total += cart[i].product.price;   addedProduct = true;          
       }         
-    }
-    
-    if(addedFilm === false) {
+    }    
+    if(addedProduct === false) {
       cart.push({ product: product, amount: 1, total: product.price}); 
     }
       localStorage.setItem("ShoppingCart", JSON.stringify(cart));

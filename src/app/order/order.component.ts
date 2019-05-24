@@ -9,7 +9,7 @@ import { IProduct } from '../interfaces/iproduct';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-
+  
   public cart = [];  
   constructor(private dataService: DataService) { }
 
@@ -24,28 +24,22 @@ export class OrderComponent implements OnInit {
   }
 
   getTotal(){
-    var total = 0;
+    let total = 0;
     this.cart = this.dataService.getProductFromCart();
-    if(this.cart.length !== null){
-    for(var i = 0; i < this.cart.length; i++){
-        var films = this.cart[i].price;
-        total += films;
+    if(this.cart.length != null){
+    for(let i = 0; i < this.cart.length; i++){
+        let totalPrice = this.cart[i].total;
+        total += totalPrice;
     }
     return total;
-  }else{
-    return "shopping cart is empty"
+    }else{
+      return "shopping cart is empty"
     }
   }
 
 
   ngOnInit() {
-    // this.cart = this.dataService.getProductFromCart();
     this.cart = this.dataService.getProductFromCart();
-    console.log(this.cart);
-    // .subscribe(data => {
-    //   this.cart = data;
-    // });
-    
-   
+    console.log(this.cart);   
   }
 }

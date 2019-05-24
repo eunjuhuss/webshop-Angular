@@ -16,9 +16,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let cartItem of cart">
-        <td><img src="{{cartItem.imageUrl}}"  width="60px;"  height="100px;"alt={{cartItem.name}}></td>
-        <td>{{cartItem.name}}</td>
-        <td>{{cartItem.price}}</td>
+        <td><img src="{{cartItem.product.imageUrl}}"  width="60px;"  height="100px;"alt={{cartItem.name}}></td>
+        <td>{{cartItem.product.name}}</td>
+        <td>{{cartItem.product.price}}</td>
         <td>{{cartItem.amount}}</td>
         <td>
           <i class="col-sm-3 fas fa-cart-arrow-down" (click) = addToCart(product)></i>
