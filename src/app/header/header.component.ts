@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { ICart } from '../interfaces/ICart';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,17 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  // @Input() cart:ICart;
+  // @Output() totalAmount = new EventEmitter<any>();
   constructor(private dataService: DataService) { }
   
   emptyCart(){    
     this.dataService.removeAllProductFromCart();  
   }
+
+
+
+  
 
  
 

@@ -108,19 +108,15 @@ getProductFromCart(){
 
 
 
-removeProductFromCart(product){  
-
-  let findProduct = this.getProductFromCart();  
-
-  findProduct.splice(product, 1);
-
-  this.addProductToCart(findProduct);
-
- }
-
-
-
-
+removeProductFromCart(product){
+  let findProduct:ICart[] = this.getProductFromCart();
+    for(let i = 0; i < findProduct.length; i++){
+      if(findProduct[i].product.id === product.id){
+        findProduct.splice(i, 1);      
+      }         
+    }  
+    localStorage.setItem("ShoppingCart", JSON.stringify(findProduct));
+  }
 
 removeAllProductFromCart(){  
 
