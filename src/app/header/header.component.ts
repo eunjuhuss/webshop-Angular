@@ -11,11 +11,21 @@ export class HeaderComponent implements OnInit {
   constructor(private dataService: DataService) { }
   
   emptyCart(){    
-    this.dataService.removeAllProductFromCart();
-  
+    this.dataService.removeAllProductFromCart();  
   }
 
+ 
+
   ngOnInit() {
+    let count = this.dataService.getProductFromCart();  
+    let amount = 0;
+    for(let i = 0; i < count.length; i++){
+      let totalAmount = count[i].amount;
+      amount += totalAmount;
+      console.log(amount);
+
+    }
+    return amount;
   }
 
 }

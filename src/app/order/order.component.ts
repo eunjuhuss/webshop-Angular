@@ -9,9 +9,20 @@ import { IProduct } from '../interfaces/iproduct';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  
+  public products = [];
+  public productAddedTocart = [];
   public cart = [];  
   constructor(private dataService: DataService) { }
+
+
+  getProducts() {
+    this.dataService.getData()
+    .subscribe(data => {
+      this.products = data;      
+      this.productAddedTocart = this.products;
+    });
+
+  }
 
 
   
@@ -19,19 +30,17 @@ export class OrderComponent implements OnInit {
       this.dataService.removeProductFromCart(product);    
   }
 
-  addToCart(product:IProduct){
-    this.dataService.addProductToCart(product);         
-  }
+
 
   getTotal(){
     let total = 0;
     this.cart = this.dataService.getProductFromCart();
     if(this.cart.length != null){
-    for(let i = 0; i < this.cart.length; i++){
+      for(let i = 0; i < this.cart.length; i++){
         let totalPrice = this.cart[i].total;
         total += totalPrice;
-    }
-    return total;
+      }
+      return total;
     }else{
       return "shopping cart is empty"
     }
