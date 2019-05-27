@@ -25,4 +25,10 @@ describe('OrderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should add total price ', () => {
+    expect(component.total).toBeUndefined();
+    component.getTotal();
+    
+  });
 });

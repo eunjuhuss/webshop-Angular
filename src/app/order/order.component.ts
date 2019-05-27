@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { IProduct } from '../interfaces/iproduct';
 import { ICart } from '../interfaces/ICart';
+import { IOrder, IOrderRow } from '../interfaces/iorder';
+//time from moment
+import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +18,11 @@ export class OrderComponent implements OnInit {
   public productAddedTocart = [];
   public cart:ICart[] = [];
   total: number;
-  constructor(private dataService: DataService) { }
+  public orderRows:IOrderRow[] = [];
+  // bara 1
+  public orders:IOrder;
+  public orderTime = moment().format('LLLL');
+  constructor(private dataService: DataService, private router: Router) { }
 
 
   getProducts() {
@@ -48,6 +56,38 @@ export class OrderComponent implements OnInit {
       return "shopping cart is empty";
     }
   }
+
+  orderMovies(name, email){
+    console.log(name, email);
+    event.preventDefault();
+
+    for(var i=0; i< this.cart.length; i++){
+      this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
+    };
+
+    this.orders = {
+      id: 0, 
+      companyId: 1,
+      created: this.orderTime,
+      createdBy: name,
+      paymentMethod: 'bankID',
+      totalPrice: this.total,
+      //olika betalt status
+      status: 0,
+      orderRows: this.orderRows
+    }
+    console.log(this.orders);
+
+    this.dataService.checkoutOrders(this.orders).subscribe(
+      response => {console.log(response);},
+      err => {console.log(err.message);},
+      ()=> {console.log('completed');}
+    );
+    localStorage.clear();
+    this.router.navigate(['/home']);
+  }
+
+  
 
 
   ngOnInit() {

@@ -28,18 +28,9 @@ describe('HomeComponent', () => {
   });
 
 
-  it("should call getData and return action ", async(() => {
-    // const response: IProduct[] = [];
-  
-    // spyOn(DataService, 'getData').and.returnValue(of(response))
-  
-    // component.getData();
-  
-    // fixture.detectChanges();
-  
+
+  it("should display all products", async(() => {    
     expect(component.products.length).toEqual(3);
   }));
-
-
 
 });

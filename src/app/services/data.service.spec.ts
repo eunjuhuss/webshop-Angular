@@ -26,6 +26,6 @@ describe('DataService', () => {
     it('should return an Observable<IProduct[]> ', () => {
       const service: DataService = TestBed.get(DataService);
       service.getCategory().subscribe(catergory => expect(catergory.length).toBe(4));
-      });
+    });
 
 });

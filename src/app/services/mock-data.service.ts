@@ -3,6 +3,7 @@ import { IData } from '../interfaces/idata';
 import { IProduct } from '../interfaces/iproduct';
 import { Observable, of } from 'rxjs';
 import { ICategory } from '../interfaces/icategory';
+import { ICart } from '../interfaces/icart';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class MockDataService implements IData{
   // getData(): Observable<IProduct[]> {
   //   throw new Error("Method not implemented.");
   // }
+  item: ICart[] = [];
+
   products:IProduct[]=[{
     id:1,
     name:'first batman',
@@ -70,6 +73,12 @@ export class MockDataService implements IData{
     name: "thriller"
   }];
 
+  localStorageItems:ICart[]=[{
+    product: this.products[0],
+    amount:100,
+    total:1
+  }];
+
 
 
  
@@ -84,8 +93,25 @@ export class MockDataService implements IData{
     return of(this.products.find(x=>x.id===id));
   }
 
-  getProductFromCart():Observable<IProduct[]> {  
-    return of(this.products);
+  // addProductToCart(product:IProduct){
+  //   let cart: ICart[] = this.getProductFromCart();
+  //   let addedProduct = false;
+  //   if(cart != null) {
+  //     for(let i = 0; i < cart.length; i++){
+  //       if(cart[i].product.id === product.id){
+  //         cart[i].amount++;       
+  //         cart[i].total += cart[i].product.price;   addedProduct = true;          
+  //       }         
+  //     }    
+  //     if(addedProduct === false) {
+  //       cart.push({ product: product, amount: 1, total: product.price}); 
+  //     }
+  //   }
+  
+  // }
+
+  getProductFromCart() {  
+    return this.item = this.localStorageItems;
   } 
 
   constructor() { }

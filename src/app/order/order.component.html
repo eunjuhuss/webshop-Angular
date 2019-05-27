@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="cart">
     
  
   <table class="table table-dark">
@@ -44,12 +44,13 @@
       
       <div class="form-group col-md-6">
         <label for="inputName">Name</label>
-        <input type="Name" class="form-control" id="inputName" placeholder="Name">
+        <input type="text" class="form-control" id="inputName" placeholder="Name" #name>
       </div>
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email" #email>
       </div>
+      <button (click)="orderMovies(name.value, email.value)"type="submit" class="btn">Sign in</button>
       
     </div>
     <div class="form-group">
@@ -80,7 +81,7 @@
       </div>
     </div>
     
-    <button type="submit" class="btn">Sign in</button>
+    
   </form>
 
 </div>

@@ -11,6 +11,7 @@ import { IData } from '../interfaces/idata';
 import { ICategory } from '../interfaces/icategory';
 
 import { ICart } from '../interfaces/ICart';
+import { IOrder } from '../interfaces/iorder';
 
 
 
@@ -123,6 +124,11 @@ removeProductFromCart(product){
 removeAllProductFromCart(): ICart[]{
   localStorage.removeItem("ShoppingCart"); 
   return this.getProductFromCart();
+}
+// bara 1 order därför att [] behövs inte!
+checkoutOrders( order: IOrder): Observable<IOrder>{
+  return this.httpClient.post<IOrder>('https://medieinstitutet-wie-products.azurewebsites.net/api/orders', order);
+
 }
 
 
