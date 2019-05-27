@@ -9,12 +9,14 @@ import { EventEmitter } from 'events';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public cart:ICart[] = [];
   // @Input() cart:ICart;
   // @Output() totalAmount = new EventEmitter<any>();
   constructor(private dataService: DataService) { }
   
   emptyCart(){    
-    this.dataService.removeAllProductFromCart();  
+    this.dataService.removeAllProductFromCart();
+    this.cart = this.dataService.getProductFromCart();   
   }
 
 

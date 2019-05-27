@@ -120,9 +120,9 @@ removeProductFromCart(product){
     localStorage.setItem("ShoppingCart", JSON.stringify(findProduct));
   }
 
-removeAllProductFromCart(){
+removeAllProductFromCart(): ICart[]{
   localStorage.removeItem("ShoppingCart"); 
-  this.getProductFromCart();
+  return this.getProductFromCart();
 }
 
 

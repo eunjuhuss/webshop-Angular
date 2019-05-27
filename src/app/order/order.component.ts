@@ -23,15 +23,16 @@ export class OrderComponent implements OnInit {
       this.products = data;      
       this.productAddedTocart = this.products;
     });
-
   }
-
-
-  
+ 
   removeItem(product){ 
       this.dataService.removeProductFromCart(product);    
   }
 
+  emptyCart(){    
+    this.dataService.removeAllProductFromCart(); 
+    this.cart = this.dataService.getProductFromCart(); 
+  }
 
 
   getTotal(){
@@ -43,7 +44,7 @@ export class OrderComponent implements OnInit {
         this.total += totalPrice;
       }
       return this.total;
-    }else{
+      }else{
       return "shopping cart is empty";
     }
   }

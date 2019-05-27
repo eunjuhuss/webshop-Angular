@@ -37,6 +37,26 @@ export class ProductsDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { }
   // read parameter
  
+
+
+  getProductsDetails(id:number){
+    this.dataService.getMovie(id)
+    .subscribe(detailProduct => {
+      console.log(detailProduct);
+      this.product = detailProduct;
+    }); 
+   
+  }
+
+  
+  addToCart(product:IProduct){
+    this.dataService.addProductToCart(product);         
+  }
+
+  removeItem(product){
+    this.dataService.removeProductFromCart(product);
+  }
+
   ngOnInit() {
     //paramMap (from url)    
     //hämta products id from home html
@@ -48,14 +68,6 @@ export class ProductsDetailComponent implements OnInit {
     });
   }
 
-  getProductsDetails(id:number){
-    this.dataService.getMovie(id)
-    .subscribe(detailProduct => {
-      console.log(detailProduct);
-      this.product = detailProduct;
-    }); 
-   
-  }
 
  
   

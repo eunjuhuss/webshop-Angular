@@ -1,8 +1,8 @@
-
-
 <div class="container">
-  <h4>Total: {{ total }}</h4>
-<table class="table table-dark">
+    
+ 
+  <table class="table table-dark">
+     
     <thead>
       <tr>
         <th scope="col">Image</th>
@@ -12,12 +12,12 @@
         <th scope="col">Total</th>
         <!-- <th scope="col">Add</th>
         <th scope="col">Remove</th> -->
-       
+
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let cartItem of cart">
-        <td><img src="{{cartItem.product.imageUrl}}"  width="60px;"  height="100px;"alt={{cartItem.name}}></td>
+        <td><img src="{{cartItem.product.imageUrl}}" width="60px;" height="100px;" alt={{cartItem.name}}></td>
         <td>{{cartItem.product.name}}</td>
         <td>{{cartItem.product.price | currency:"$"}}</td>
         <td>{{cartItem.amount}}</td>
@@ -28,10 +28,59 @@
         <td>
             <i class="col-sm-3 fas fas fa-trash-alt" (click) = removeItem(product)></i>
         </td> -->
-        
-     
-        
       </tr>
+      
     </tbody>
+    <button type="submit" class="btn empty-cart" (click)="emptyCart()">Empty Cart</button>
+  
   </table>
+
+
+  <form class="order-form">
+      <div class="form-group">
+          <h3>{{ getTotal() | currency:"$"}}</h3>     
+        </div>
+    <div class="form-row">
+      
+      <div class="form-group col-md-6">
+        <label for="inputName">Name</label>
+        <input type="Name" class="form-control" id="inputName" placeholder="Name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+      
+    </div>
+    <div class="form-group">
+      <h3>Time</h3>     
+    </div>
+
+  
+    <div class="form-row">
+    
+      <div class="form-group col-md-4">
+        <label for="inputState">PaymentMethod</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn">Sign in</button>
+  </form>
+
 </div>

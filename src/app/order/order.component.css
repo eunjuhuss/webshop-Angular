@@ -1,3 +1,21 @@
 .container{
     margin-top: 20px;
 }
+
+.order-form{
+    background-color: #F2F2F2;
+    /* background-color: #26A74A; */
+    padding: 30px;
+}
+
+.btn{
+   background-color: #26A74A; 
+   color:#F2F2F2;
+}
+
+.empty-cart{
+    background-color:#F2F2F2;    
+    color: black;
+   
+
+}
