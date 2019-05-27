@@ -21,7 +21,7 @@ import { ICart } from '../interfaces/ICart';
 })
 
 export class DataService implements IData{
-
+ 
 
 
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
@@ -97,13 +97,15 @@ addProductToCart(product:IProduct){
 
 
 
-
+ 
 
 
 getProductFromCart(){  
-
-  return JSON.parse(localStorage.getItem("ShoppingCart"));
-
+  if(localStorage.getItem("ShoppingCart")==='undefined'){
+    return [];    
+  }else {
+    return JSON.parse(localStorage.getItem("ShoppingCart"))
+  }
 }
 
 
@@ -118,10 +120,9 @@ removeProductFromCart(product){
     localStorage.setItem("ShoppingCart", JSON.stringify(findProduct));
   }
 
-removeAllProductFromCart(){  
-
+removeAllProductFromCart(){
   localStorage.removeItem("ShoppingCart"); 
-
+  this.getProductFromCart();
 }
 
 

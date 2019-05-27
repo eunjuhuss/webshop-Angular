@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { IProduct } from '../interfaces/iproduct';
+import { ICart } from '../interfaces/ICart';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { IProduct } from '../interfaces/iproduct';
 export class OrderComponent implements OnInit {
   public products = [];
   public productAddedTocart = [];
-  public cart = [];  
+  public cart:ICart[] = [];
+  total: number;
   constructor(private dataService: DataService) { }
 
 
@@ -33,16 +35,16 @@ export class OrderComponent implements OnInit {
 
 
   getTotal(){
-    let total = 0;
+    this.total = 0;
     this.cart = this.dataService.getProductFromCart();
     if(this.cart.length != null){
       for(let i = 0; i < this.cart.length; i++){
         let totalPrice = this.cart[i].total;
-        total += totalPrice;
+        this.total += totalPrice;
       }
-      return total;
+      return this.total;
     }else{
-      return "shopping cart is empty"
+      return "shopping cart is empty";
     }
   }
 

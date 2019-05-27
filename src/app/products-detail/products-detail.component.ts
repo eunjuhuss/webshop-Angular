@@ -11,6 +11,7 @@ import { IProduct } from '../interfaces/iproduct';
 })
 export class ProductsDetailComponent implements OnInit {
   // it takes a time to fetch a detail product from url, so need to use this empty object
+ 
   public product: IProduct = {    
       id:null,
       name:'',
@@ -29,8 +30,8 @@ export class ProductsDetailComponent implements OnInit {
       }]
     };
 
-  private items: IProduct[] = [];
-  private total: number = 0;
+  // private items: IProduct[] = [];
+  // private total: number = 0;
   
   //inject
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { }
@@ -47,11 +48,11 @@ export class ProductsDetailComponent implements OnInit {
     });
   }
 
-  getProductsDetails(id){
+  getProductsDetails(id:number){
     this.dataService.getMovie(id)
     .subscribe(detailProduct => {
       console.log(detailProduct);
-      this.product = detailProduct
+      this.product = detailProduct;
     }); 
    
   }
