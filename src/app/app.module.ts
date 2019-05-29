@@ -37,6 +37,7 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
+    FormsModule,
     
     
     

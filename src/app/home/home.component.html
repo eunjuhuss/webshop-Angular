@@ -36,7 +36,7 @@
   <div class="col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of filtredProducts">
     <img class="films-img" src="{{product.imageUrl}}" alt={{product.name}}>
     <div class="product-name-price">
-      <a routerLink="/detail/{{product?.id}}">{{product.name | uppercase | slice:0:18 }}</a>
+      <a routerLink="/detail/{{product?.id}}" routerLinkActive="active-link">{{product.name | uppercase | slice:0:18 }}</a>
       <div class="row">
         <p class="col-sm-6">{{product.price | currency:"$"}}</p>
         <i class="col-sm-3 fas fa-cart-arrow-down" (click)=addToCart(product)></i>

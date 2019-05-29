@@ -22,6 +22,7 @@ export class OrderComponent implements OnInit {
   // bara 1
   public orders:IOrder;
   public orderTime = moment().format('LLLL');
+ 
   constructor(private dataService: DataService, private router: Router) { }
 
 
@@ -46,14 +47,14 @@ export class OrderComponent implements OnInit {
   getTotal(){
     this.total = 0;
     this.cart = this.dataService.getProductFromCart();
-    if(this.cart.length != null){
+    if(this.cart.length !== null){
       for(let i = 0; i < this.cart.length; i++){
         let totalPrice = this.cart[i].total;
         this.total += totalPrice;
       }
       return this.total;
       }else{
-      return "shopping cart is empty";
+      return this.cart = [];
     }
   }
 
@@ -84,14 +85,11 @@ export class OrderComponent implements OnInit {
       ()=> {console.log('completed');}
     );
     localStorage.clear();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/completed']);
   }
-
-  
-
 
   ngOnInit() {
     this.cart = this.dataService.getProductFromCart();
-    console.log(this.cart);   
+    console.log(this.cart); 
   }
 }

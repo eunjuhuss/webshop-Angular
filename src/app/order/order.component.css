@@ -6,16 +6,17 @@
     background-color: #F2F2F2;
     /* background-color: #26A74A; */
     padding: 30px;
+    margin-bottom: 30px;
 }
 
 .btn{
    background-color: #26A74A; 
    color:#F2F2F2;
+   margin: 20px;
+}
+.border-line{
+    border-bottom: 1px grey solid;
+    margin: 20px 0px 20px 0px;
 }
 
-.empty-cart{
-    background-color:#F2F2F2;    
-    color: black;
-   
 
-}

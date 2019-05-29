@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   public filtredProducts = [];
   public productAddedTocart = [];
+  public searchProducts: IProduct[];
 
   constructor(private dataService: DataService) { }
 
@@ -43,8 +44,6 @@ export class HomeComponent implements OnInit {
     //this.findCategoryId();   
 
     let sortById = this.products;
-    //let categoryId = this.categorys;
-   // to empty efter for loop
     this.filtredProducts=[];
     console.log(this.filtredProducts);
 
@@ -61,13 +60,15 @@ export class HomeComponent implements OnInit {
               }else {
                 console.log("no mached films");         
               }         
-          //   }         
-          // }                      
+                     
         }    
       }       
     }
 
 
+
+    
+  
 
  
 

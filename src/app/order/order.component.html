@@ -1,8 +1,5 @@
 <div class="container" *ngIf="cart">
-    
- 
   <table class="table table-dark">
-     
     <thead>
       <tr>
         <th scope="col">Image</th>
@@ -10,9 +7,6 @@
         <th scope="col">Price</th>
         <th scope="col">Amount</th>
         <th scope="col">Total</th>
-        <!-- <th scope="col">Add</th>
-        <th scope="col">Remove</th> -->
-
       </tr>
     </thead>
     <tbody>
@@ -22,26 +16,18 @@
         <td>{{cartItem.product.price | currency:"$"}}</td>
         <td>{{cartItem.amount}}</td>
         <td>{{cartItem.product.price * cartItem.amount | currency:"$"}}</td>
-        <!-- <td>
-          <i class="col-sm-3 fas fa-cart-arrow-down" (click) = addToCart(product)></i>
-        </td>
-        <td>
-            <i class="col-sm-3 fas fas fa-trash-alt" (click) = removeItem(product)></i>
-        </td> -->
       </tr>
-      
     </tbody>
-    <button type="submit" class="btn empty-cart" (click)="emptyCart()">Empty Cart</button>
-  
   </table>
-
+  <div>
+    <button type="submit" class="btn" (click)="emptyCart()">Empty Cart</button>
+  </div>
 
   <form class="order-form">
-      <div class="form-group">
-          <h3>{{ getTotal() | currency:"$"}}</h3>     
-        </div>
+    <h3>{{ getTotal() | currency:"$"}}</h3>
+    <div class="border-line"></div>
     <div class="form-row">
-      
+
       <div class="form-group col-md-6">
         <label for="inputName">Name</label>
         <input type="text" class="form-control" id="inputName" placeholder="Name" #name>
@@ -50,38 +36,22 @@
         <label for="inputEmail">Email</label>
         <input type="email" class="form-control" id="inputEmail" placeholder="Email" #email>
       </div>
-      <button (click)="orderMovies(name.value, email.value)"type="submit" class="btn">Sign in</button>
-      
-    </div>
-    <div class="form-group">
-      <h3>Time</h3>     
     </div>
 
-  
     <div class="form-row">
-    
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-12">
         <label for="inputState">PaymentMethod</label>
         <select id="inputState" class="form-control">
           <option selected>Choose...</option>
-          <option>...</option>
+          <option>cash</option>
+          <option>credit card</option>
         </select>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
+        <button (click)="orderMovies(name.value, email.value)" type="submit" class="btn order">Order</button>
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
-    </div>
-    
-    
   </form>
 
+</div>
+<div class="container" *ngIf="!cart">
+  <p>cart is empty</p>
 </div>

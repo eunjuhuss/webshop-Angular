@@ -27,10 +27,14 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-
-
   it("should display all products", async(() => {    
     expect(component.products.length).toEqual(3);
   }));
 
+  it("should products sort by categories", async(() => {    
+    expect(component.sortByCategories.length).toBe(1);
+    component.filtredProducts[''];
+    expect(component.filtredProducts.length).toBe(3);
+
+  }));
 });

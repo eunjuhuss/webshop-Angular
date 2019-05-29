@@ -4,6 +4,7 @@ import { IProduct } from '../interfaces/iproduct';
 import { Observable, of } from 'rxjs';
 import { ICategory } from '../interfaces/icategory';
 import { ICart } from '../interfaces/icart';
+import { IOrder } from '../interfaces/iorder';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class MockDataService implements IData{
   //   throw new Error("Method not implemented.");
   // }
   item: ICart[] = [];
-
+  orders: IOrder[] = [];
   products:IProduct[]=[{
     id:1,
     name:'first batman',
@@ -64,7 +65,6 @@ export class MockDataService implements IData{
     }]
   }];
 
-
   categorys:ICategory[]=[{
     id:5,
     name: "action"
@@ -79,8 +79,11 @@ export class MockDataService implements IData{
     total:1
   }];
 
-
-
+  orderDataMock: IOrder[] = [
+    {id:900, companyId:1, created:"2019-05-09T00:00:00", createdBy :"Eunjuhuss", paymentMethod:"internetbanking", totalPrice :100, status:0, orderRows :[{ProductId:79, Amount:3}]},
+    {id:901, companyId:1, created:"2019-05-10T00:00:00", createdBy :"Eunjuhuss", paymentMethod:"card", totalPrice :200, status:0, orderRows :[{ProductId:80, Amount:3}]},
+    {id:902, companyId:1, created:"2019-05-12T00:00:00", createdBy :"Eunjuhuss", paymentMethod:"card", totalPrice :300, status:0, orderRows :[{ProductId:81, Amount:3}]}
+  ];
  
   getData():Observable<IProduct[]> {
     return of(this.products);
@@ -93,26 +96,44 @@ export class MockDataService implements IData{
     return of(this.products.find(x=>x.id===id));
   }
 
-  // addProductToCart(product:IProduct){
-  //   let cart: ICart[] = this.getProductFromCart();
-  //   let addedProduct = false;
-  //   if(cart != null) {
-  //     for(let i = 0; i < cart.length; i++){
-  //       if(cart[i].product.id === product.id){
-  //         cart[i].amount++;       
-  //         cart[i].total += cart[i].product.price;   addedProduct = true;          
-  //       }         
-  //     }    
-  //     if(addedProduct === false) {
-  //       cart.push({ product: product, amount: 1, total: product.price}); 
-  //     }
-  //   }
+  addProductToCart(product:IProduct):void{
+    let cart: ICart[] = this.localStorageItems;
+    let addedProduct = false;
+    if(cart != null) {
+      for(let i = 0; i < cart.length; i++){
+        if(cart[i].product.id === product.id){
+          cart[i].amount++;       
+          cart[i].total += cart[i].product.price;   addedProduct = true;          
+        }         
+      }    
+      if(addedProduct === false) {
+        cart.push({ product: product, amount: 1, total: product.price}); 
+      }
+    }
   
-  // }
+  }
 
   getProductFromCart() {  
     return this.item = this.localStorageItems;
   } 
+
+
+  removeProductFromCart(cartItem:number){    
+      for(let i = 0; i < this.item.length; i++){
+        if(this.item[i].product.id === cartItem){
+          this.item.splice(i, 1);      
+        }         
+      }  
+      return this.item;
+  }
+
+  removeAllProductFromCart(): ICart[]{   
+    return this.localStorageItems=[];
+  }
+
+  checkoutOrders(): Observable<IOrder[]>{
+    return of(this.orderDataMock);
+  }
 
   constructor() { }
 }

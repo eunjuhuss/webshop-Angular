@@ -49,13 +49,35 @@ export class ProductsDetailComponent implements OnInit {
   }
 
   
-  addToCart(product:IProduct){
+  addToCart(product:IProduct):void{
     this.dataService.addProductToCart(product);         
   }
 
   removeItem(product){
     this.dataService.removeProductFromCart(product);
   }
+
+  goPrev(){
+    this.route.params.subscribe(params => {    //  Params      
+    let id = params['id'];
+    // this.getProductsDetails(id); 
+    // let previousId = id -1;
+    console.log(id-1);
+    // this.getProductsDetails(previousId)
+    // this.router.navigate(['/detail',id-1]);
+   
+    });
+
+    // let previousId = this.detailId -1;
+    // this.router.navigate(['/details',previousId]);
+ 
+  }
+ 
+//   goNext(){
+//    let nextId = this.detailId +1;
+//    this.router.navigate(['/details',nextId]);
+//  }
+
 
   ngOnInit() {
     //paramMap (from url)    

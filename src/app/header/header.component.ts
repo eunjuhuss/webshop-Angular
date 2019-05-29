@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ICart } from '../interfaces/ICart';
-import { EventEmitter } from 'events';
+
 
 @Component({
   selector: 'app-header',
@@ -9,9 +9,16 @@ import { EventEmitter } from 'events';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  // @Output() searchEvent = new EventEmitter<string>();
   public cart:ICart[] = [];
   // @Input() cart:ICart;
   // @Output() totalAmount = new EventEmitter<any>();
+
+  // searchByQuery(query: string){
+  //   this.searchEvent.emit(query);
+  // }
+
   constructor(private dataService: DataService) { }
   
   emptyCart(){    
