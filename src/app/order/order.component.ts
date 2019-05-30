@@ -5,6 +5,7 @@ import { ICart } from '../interfaces/ICart';
 import { IOrder, IOrderRow } from '../interfaces/iorder';
 //time from moment
 import * as moment from 'moment';
+import{ FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -58,9 +59,16 @@ export class OrderComponent implements OnInit {
     }
   }
 
+
+
   orderMovies(name, email){
     console.log(name, email);
     event.preventDefault();
+
+    // orderForm = new FormGroup({
+    //   name: new FormControl(''),
+    //   mail: new FormControl('')
+    //   });
 
     for(var i=0; i< this.cart.length; i++){
       this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
@@ -85,7 +93,7 @@ export class OrderComponent implements OnInit {
       ()=> {console.log('completed');}
     );
     localStorage.clear();
-    this.router.navigate(['/completed']);
+    this.router.navigate(['/complete']);
   }
 
   ngOnInit() {

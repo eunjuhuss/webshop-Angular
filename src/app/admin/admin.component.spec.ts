@@ -1,26 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CheckoutComponent } from './checkout.component';
+import { AdminComponent } from './admin.component';
+import { DataService } from '../services/data.service';
+import { MockDataService } from '../services/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DataService } from '../services/data.service';
-import { MockDataService } from '../services/mock-data.service'
 
-describe('CheckoutComponent', () => {
-  let component: CheckoutComponent;
-  let fixture: ComponentFixture<CheckoutComponent>;
+describe('AdminComponent', () => {
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutComponent ],
+      declarations: [ AdminComponent ],
       imports: [ HttpClientModule, RouterTestingModule ]
     })
-    .overrideComponent(CheckoutComponent , { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
+    .overrideComponent(AdminComponent, { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckoutComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

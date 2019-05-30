@@ -4,17 +4,12 @@
   </div>
   <div class="col-md-12 col-lg-6 detail_product_info">
     <h3 class="col-md-12">{{product.name}}</h3>
-
     <p class="col-md-12 col-lg-12 product_price">{{product.price  | currency:"$"}}</p>
     <button class="col-sm-5 btn btn-sm btn-info" (click)=addToCart(product)>Add</button>
     <button class="col-sm-5 btn btn-sm btn-info" (click)=removeItem(product)>Remove</button>
     <div class="col-md-12 col-lg-12 detail_product_info">
       <p> {{product.description}} </p>
     </div>
-  </div>
-
-  
+  </div>  
 </div>
-<a (click)="goPrev()">Previous</a>
-  <br>
-  <a (click)="goNext()">Next</a>
+

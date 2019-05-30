@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HeaderComponent } from './header/header.component';
+import { CompleteComponent } from './complete/complete.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -31,7 +33,9 @@ import { HeaderComponent } from './header/header.component';
   //router 5, 디클라래이션에 라우팅컴퍼넌트를 넣어준다
     routingComponents,
     ProductsDetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    CompleteComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

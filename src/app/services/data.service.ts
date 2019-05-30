@@ -18,6 +18,7 @@ export class DataService implements IData{
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
   categoryUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/categories';
   orderUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders';
+ 
 
   constructor(private httpClient: HttpClient) { }
 
@@ -81,6 +82,10 @@ export class DataService implements IData{
   checkoutOrders(order: IOrder): Observable<IOrder>{
     return this.httpClient.post<IOrder>(this.orderUrl, order);
   }
+
+  getOrderData():Observable<IOrder[]>{  
+    return this.httpClient.get<IOrder[]>(this.orderUrl + '/?companyid=1'); 
+  } 
 
   errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");

@@ -23,18 +23,17 @@
     <button type="submit" class="btn" (click)="emptyCart()">Empty Cart</button>
   </div>
 
-  <form class="order-form">
+  <form class="orderForm">
     <h3>{{ getTotal() | currency:"$"}}</h3>
     <div class="border-line"></div>
     <div class="form-row">
-
       <div class="form-group col-md-6">
         <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Name" #name>
+        <input type="text" class="form-control" placeholder="Name" #name>
       </div>
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" #email>
+        <input type="email" class="form-control" placeholder="Email" #email>
       </div>
     </div>
 
@@ -50,8 +49,10 @@
       </div>
     </div>
   </form>
-
 </div>
-<div class="container" *ngIf="!cart">
-  <p>cart is empty</p>
+<div class="thanks-container" *ngIf="!cart">
+  <h3>cart is empty</h3>
+      <button class="btn btn-success my-2 my-lg-3" routerLink="/home" routerLinkActive="active">
+        <span>go to home</span>
+      </button>
 </div>

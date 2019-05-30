@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
+import { CompleteComponent } from './complete/complete.component'
+import { AdminComponent } from './admin/admin.component';
 // variable need to skriv ovanpå @Ngmodule
 // router 2, routes라는 local variable에 넣고
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent }, 
   { path: 'detail/:id', component: ProductsDetailComponent },  
   { path: 'order', component: OrderComponent }, 
+  { path: 'complete', component: CompleteComponent },
+  { path: 'admin', component: AdminComponent }, 
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -30,5 +34,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 // router 3, export해준다
-export const routingComponents = [HomeComponent,OrderComponent,PageNotFoundComponent, ProductsDetailComponent];
+export const routingComponents = [HomeComponent,OrderComponent,PageNotFoundComponent, ProductsDetailComponent, CompleteComponent, AdminComponent ];
 
