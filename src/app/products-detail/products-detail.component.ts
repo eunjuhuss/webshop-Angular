@@ -84,10 +84,8 @@ export class ProductsDetailComponent implements OnInit {
     //paramMap (from url)    
     //hämta products id from home html
     this.route.params.subscribe(params => {    //  Params      
-    let id = params['id'];
-    
+    let id = params['id'];    
     this.getProductsDetails(id); 
-
     });
   }
 
