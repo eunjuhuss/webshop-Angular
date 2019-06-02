@@ -10,6 +10,10 @@ import { IOrder } from '../interfaces/iorder';
   providedIn: 'root'
 })
 export class MockDataService implements IData{
+ 
+  // removeOrder(id: number): Observable<IOrder[]> {
+  //   throw new Error("Method not implemented.");
+  // }
   // getData(): Observable<IProduct[]> {
   //   throw new Error("Method not implemented.");
   // }
@@ -137,8 +141,20 @@ export class MockDataService implements IData{
     return of(this.orderDataMock);
   }
 
-  checkoutOrders(): Observable<IOrder[]>{
-    return of(this.orderDataMock);
+   checkoutOrders(order: IOrder): Observable<IOrder> {
+    throw new Error("Method not implemented.");
+  }
+
+
+ 
+
+  // removeOrder(id: number): Observable<IOrder[]> {
+  //   return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
+
+  // }
+
+  getOrderDetails(id: number): Observable<IOrder>{
+    return of(this.orderDataMock.find(x=>x.id===id));
   }
 
   constructor() { }

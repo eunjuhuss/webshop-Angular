@@ -31,9 +31,13 @@
     border-radius: 10px;
 }
 
-.table{
+/* .table{
     
-    /* width: 160px; */
+    width: 160px;
+} */
+
+label{
+    font-weight: 600;
 }
 
 

@@ -6,8 +6,8 @@ import { IData } from '../interfaces/idata';
 import { ICategory } from '../interfaces/icategory';
 import { ICart } from '../interfaces/ICart';
 import { IOrder } from '../interfaces/iorder';
-import { IAdminOrder } from '../interfaces/iadminorder';
-import { map } from 'rxjs/operators';
+
+
 
 @Injectable({
 
@@ -94,18 +94,14 @@ export class DataService implements IData{
     return this.httpClient.get<IOrder[]>(this.orderUrl + '/?companyid=1'); 
   }
 
-  removeOrder(id: number): Observable<IOrder[]> {
-    return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
+  // removeOrder(id: number): Observable<IOrder[]> {
+  //   return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
 
-  }
+  // }
 
   getOrderDetails(id: number): Observable<IOrder>{
-    // return this.getOrderData().pipe(map(adminDetails => 
-    //   adminDetails.find(order=>
-    //     order.id == id)));
     return this.httpClient.get<IOrder>(this.orderUrl + '/'+ id);
   }
-
 
 
   errorHandler(error: HttpErrorResponse){

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IAdminOrder } from '../interfaces/iadminorder';
 import { IOrder } from '../interfaces/iorder';
 import { IProduct } from '../interfaces/iproduct';
 
@@ -22,9 +21,7 @@ export class OrderDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {    //  Params      
       let id = params['id'];    
       this.getOrderDetails(id); 
-      });
-
-     
+      });     
   }
   
   getOrderDetails(id:number){
@@ -33,7 +30,6 @@ export class OrderDetailsComponent implements OnInit {
       console.log(detailProduct);
       this.orderDetails = detailProduct;
       console.log(this.orderDetails.orderRows);
-
     });
      
     this.dataService.getData()
@@ -41,13 +37,7 @@ export class OrderDetailsComponent implements OnInit {
       console.log(data);
       this.productName = data;
       console.log(this.productName); 
-
-        }
-    
-    
-    
-    
-    
+      } 
     ); 
 
 //     let productName = this.productName;

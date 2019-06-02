@@ -1,11 +1,11 @@
 .table-responsive{
-    margin: 50px;
-    
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;   
 }
 
 .table{
-    text-align: center;
-    
+    text-align: center;    
 }
 
 

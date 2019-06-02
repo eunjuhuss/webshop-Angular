@@ -1,5 +1,5 @@
 <main>
-    <div class="table-responsive" *ngIf="orderDetails">
+    <div class="detail-table table-responsive" *ngIf="orderDetails">
         <p>{{orderDetails.orderRow}}</p>
         <table class="table table-dark">
         <thead>
@@ -17,7 +17,18 @@
           </tr>
         </tbody>
       </table>
-      <p>{{orderDetails.totalPrice | currency:"$"}}</p>
+      <!-- <p>{{orderDetails.createdBy}}</p>
+      <p>{{orderDetails.totalPrice | currency:"$"}}</p> -->
+
+      <div class="row userInfo-detail">
+          <div class="col-sm-5 col-md-6">{{orderDetails.createdBy}}</div>
+          <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">Total: {{orderDetails.totalPrice | currency:"$"}}</div>
+        </div>
     </div>
+
+
+    
+
+
   </main>
   
