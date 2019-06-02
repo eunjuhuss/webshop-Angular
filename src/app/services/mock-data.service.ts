@@ -127,8 +127,14 @@ export class MockDataService implements IData{
       return this.item;
   }
 
+ 
+
   removeAllProductFromCart(): ICart[]{   
     return this.localStorageItems=[];
+  }
+
+  getOrderData():Observable<IOrder[]>{  
+    return of(this.orderDataMock);
   }
 
   checkoutOrders(): Observable<IOrder[]>{

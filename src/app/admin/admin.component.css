@@ -1,3 +1,25 @@
-.container{
+.table-responsive{
     margin: 50px;
+    
+}
+
+.table{
+    text-align: center;
+    
+}
+
+
+
+
+
+@media screen and (min-width: 1024px) {
+
+
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+
 }

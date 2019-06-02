@@ -1,47 +1,32 @@
-<!-- 
-<ul *ngFor="let product of products">
-  <li>{{product.id}} {{product.name}} </li>
-  <img class="filmsImg" src = {{product.imageUrl}} alt="Place image title">
-</ul> -->
+<main>
+  <div class="row" style="justify-content:center;">
+    {{counter}}
+    <button class="btn btn-success my-md-2" (click)=displayAllProducts()>All</button>
+    <button class="btn btn-success my-md-2" (click)=sortByCategories($event) id="5">Action</button>
+    <button class="btn btn-success my-md-2" (click)=sortByCategories($event) id="6">Thriller</button>
+    <button class="btn btn-success my-md-2" (click)=sortByCategories($event) id="7">Comedy</button>
+    <button class="btn btn-success my-md-2" (click)=sortByCategories($event) id="8">Sci-fi</button>
+  </div>
 
-<!-- <div>
-<table>
-  <thead>
-    <th>ID</th>
-    <th>NAME</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
-      <td><img class="filmsImg" src={{product.imageUrl}} alt={{product.name}}></td>
-    </tr>
-  </tbody>
-</table>
-</div> -->
-
-
-
-<div class="row" style="justify-content:center;">
-  {{counter}}
-  <button class="btn btn-success my-2 my-lg-3" (click)=displayAllProducts()>All</button>
-  <button class="btn btn-success my-2 my-lg-3" (click)=sortByCategories($event) id="5">Action</button>
-  <button class="btn btn-success my-2 my-lg-3" (click)=sortByCategories($event) id="6">Thriller</button>
-  <button class="btn btn-success my-2 my-lg-3" (click)=sortByCategories($event) id="7">Comedy</button>
-  <button class="btn btn-success my-2 my-lg-3" (click)=sortByCategories($event) id="8">Sci-fi</button>
-</div>
-
-<div class="row product-container">
-  <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
-  <div class="col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of filtredProducts">
-    <img class="films-img" src="{{product.imageUrl}}" alt={{product.name}}>
-    <div class="product-name-price">
-      <a routerLink="/detail/{{product?.id}}" routerLinkActive="active-link">{{product.name | uppercase | slice:0:18 }}</a>
-      <div class="row">
-        <p class="col-sm-6">{{product.price | currency:"$"}}</p>
-        <i class="col-sm-3 fas fa-cart-arrow-down" (click)=addToCart(product)></i>
-        <i class="col-sm-3 fas fa-trash-alt" (click)=removeItem(product)></i>
+  <div class="row product-container">
+    <!-- <div class="col-md-2 product" *ngFor="let product of (products | productsFilter:filterBy)"> -->
+    <div class="col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of filtredProducts">
+      <img class="films-img" src="{{product.imageUrl}}" alt={{product.name}}>
+      <div class="product-name-price">
+        <a class="film-name" routerLink="/detail/{{product?.id}}"
+          routerLinkActive="active-link">{{product.name | uppercase | slice:0:18 }}</a>
+        <div class="row">
+          <div class="col-8 film-price">
+            <p>{{product.price | currency:"$"}}</p>
+          </div>
+          <div class="col-2">
+            <i class="fas fa-cart-arrow-down" (click)=addToCart(product)></i>
+          </div>
+          <div class="col-2">
+            <i class="fas fa-trash-alt" (click)=removeItem(product)></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</main>

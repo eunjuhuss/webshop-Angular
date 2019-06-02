@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockDataService } from '../services/mock-data.service';
 import { DataService } from '../services/data.service';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('OrderComponent', () => {
   let component: OrderComponent;
@@ -13,7 +14,7 @@ describe('OrderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OrderComponent ],
-      imports: [ HttpClientModule, RouterTestingModule ]
+      imports: [ HttpClientModule, RouterTestingModule, FormBuilder, Validators, FormsModule, ReactiveFormsModule ]
     })
     .overrideComponent(OrderComponent, { set: { providers: [{ provide: DataService, useClass: MockDataService }]}}) 
     .compileComponents();
@@ -28,13 +29,6 @@ describe('OrderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it(`Should show user`, () => {   
-    expect(component.orderMovies.length).toBe(2);
-    expect(component.orderRows).toBeDefined();
-  });
-
-
 
   it(`Should create orderRows`, () => {
     expect(component.orderRows).toBeDefined();

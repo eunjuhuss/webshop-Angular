@@ -1,5 +1,6 @@
 .container{
     margin-top: 20px;
+    width: 100%;
 }
 
 .orderForm{
@@ -29,5 +30,11 @@
     margin-top: 100px;
     border-radius: 10px;
 }
+
+.table{
+    
+    /* width: 160px; */
+}
+
 
 

@@ -33,8 +33,11 @@ describe('ProductsDetailComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  it("should call getMovie and return a specific film", () => {
-    expect(component).toBeTruthy();
+  it('should return id', () => {
+    component.getProductsDetails(2);
+    expect(component.product).toBeDefined();
+    expect(component.product.name).toBe('second batman');
+
   });
 
 });

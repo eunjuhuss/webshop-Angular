@@ -1,22 +1,30 @@
-<div class="container" *ngIf="orderDetails">
-  <table class="table table-dark">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">created</th>
-        <th scope="col">createdBy</th>
-        <th scope="col">paymentMethod</th>
-        <th scope="col">totalPrice</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let singleOrderDetail of orderDetails">
-        <td>{{singleOrderDetail.orderRows[0].ProductId }}</td>
-        <td>{{singleOrderDetail.created}}</td>
-        <td>{{singleOrderDetail.createdBy}}</td>
-        <td>{{singleOrderDetail.paymentMethod}}</td>
-        <td>{{singleOrderDetail.totalPrice}}</td>
-      </tr>
-    </tbody>
-  </table>
+<main>
+  <div class="table-responsive" *ngIf="orderDetails">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th class="th-sm" scope="col">id</th>
+          <th class="th-sm" scope="col">ordered time</th>
+          <th class="th-sm" scope="col">ordered By</th>
+          <th class="th-sm" scope="col">paymentMethod</th>
+          <th class="th-sm" scope="col">totalPrice</th>
+          <!-- <th scope="col">remove</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let singleOrderDetail of orderDetails">
+          <td>{{singleOrderDetail.id}}</td>
+          <td>{{singleOrderDetail.created}}</td>
+          <td>{{singleOrderDetail.createdBy}}</td>
+          <td>{{singleOrderDetail.paymentMethod}}</td>
+          
+          <td>{{singleOrderDetail.totalPrice | currency:"$"}}</td>
+          <a routerLink="/orderDetails/{{singleOrderDetail.id}}">
+          <button class="btn btn-success my-2 my-lg-3">order details</button>
+        </a>
+          <!-- <button class="btn btn-success my-2 my-lg-3" (click)=deleteOrder()>Remove</button> -->
+        </tr>
+      </tbody>
+    </table>
   </div>
+</main>

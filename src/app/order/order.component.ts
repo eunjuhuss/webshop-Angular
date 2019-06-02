@@ -5,7 +5,7 @@ import { ICart } from '../interfaces/ICart';
 import { IOrder, IOrderRow } from '../interfaces/iorder';
 //time from moment
 import * as moment from 'moment';
-import{ FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -14,36 +14,46 @@ import { Router } from '@angular/router';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
+
 export class OrderComponent implements OnInit {
+
   public products = [];
   public productAddedTocart = [];
   public cart:ICart[] = [];
-  total: number;
+  public total: number;
   public orderRows:IOrderRow[] = [];
   // bara 1
   public orders:IOrder;
   public orderTime = moment().format('LLLL');
- 
-  constructor(private dataService: DataService, private router: Router) { }
 
+  orderForm = this.fb.group({
+    emailAdress: ['', Validators.required],  
+    paymentMethod: ['', Validators.required] 
+
+  });
+
+ 
+
+  constructor(private dataService: DataService, private router: Router, private fb: FormBuilder) { }
 
   getProducts() {
     this.dataService.getData()
     .subscribe(data => {
-      this.products = data;      
+      this.products = data; 
       this.productAddedTocart = this.products;
     });
   }
  
+
   removeItem(product){ 
       this.dataService.removeProductFromCart(product);    
   }
+
 
   emptyCart(){    
     this.dataService.removeAllProductFromCart(); 
     this.cart = this.dataService.getProductFromCart(); 
   }
-
 
   getTotal(){
     this.total = 0;
@@ -53,24 +63,15 @@ export class OrderComponent implements OnInit {
         let totalPrice = this.cart[i].total;
         this.total += totalPrice;
       }
+
       return this.total;
       }else{
       return this.cart = [];
     }
   }
 
-
-
-  orderMovies(name, email){
-    console.log(name, email);
-    event.preventDefault();
-
-    // orderForm = new FormGroup({
-    //   name: new FormControl(''),
-    //   mail: new FormControl('')
-    //   });
-
-    for(var i=0; i< this.cart.length; i++){
+  order(){
+     for(var i=0; i< this.cart.length; i++){
       this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
     };
 
@@ -78,8 +79,8 @@ export class OrderComponent implements OnInit {
       id: 0, 
       companyId: 1,
       created: this.orderTime,
-      createdBy: name,
-      paymentMethod: 'bankID',
+      createdBy: this.orderForm.get('emailAdress').value,
+      paymentMethod: this.orderForm.get('paymentMethod').value,
       totalPrice: this.total,
       //olika betalt status
       status: 0,
@@ -92,9 +93,54 @@ export class OrderComponent implements OnInit {
       err => {console.log(err.message);},
       ()=> {console.log('completed');}
     );
+
     localStorage.clear();
     this.router.navigate(['/complete']);
   }
+
+
+
+  // orderMovies(email){
+  //   console.log(email);
+  //   event.preventDefault();
+
+  //   orderForm = this.fb.group({
+  //     emailAdress: ['', Validators.required],  
+  //     paymentMethod: ['', Validators.required] 
+  
+  //   });
+
+
+  //   for(var i=0; i< this.cart.length; i++){
+  //     this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
+
+  //   };
+
+  //   this.orders = {
+  //     id: 0, 
+  //     companyId: 1,
+  //     created: this.orderTime,
+  //     createdBy: name,
+  //     paymentMethod: 'bankID',
+  //     totalPrice: this.total,
+  //     //olika betalt status
+  //     status: 0,
+  //     orderRows: this.orderRows
+  //   }
+  //   console.log(this.orders);
+
+  //   this.dataService.checkoutOrders(this.orders).subscribe(
+  //     response => {console.log(response);},
+  //     err => {console.log(err.message);},
+  //     ()=> {console.log('completed');}
+  //   );
+
+  //   localStorage.clear();
+  //   this.router.navigate(['/complete']);
+  // }
+
+
+
 
   ngOnInit() {
     this.cart = this.dataService.getProductFromCart();

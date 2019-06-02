@@ -1,16 +1,19 @@
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="" routerLinkActive="active">FILM</a> 
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="emptyCart()">empty cart</button> -->
-    </form>
-    
-    <a routerLink="/order" routerLinkActive="active">
-      
-      <i class="col-sm-2 fas fa-cart-arrow-down"> cart</i>
-      <span>{{amount}}</span>
-    </a>
-    
-  </nav>
+  <div class="row">
+    <div class="col-6">
+      <a class="navbar-brand" routerLink="" routerLinkActive="active">FILM</a>
+    </div>
+    <div class="cart col-6">
+      <a routerLink="/order" routerLinkActive="active">
+        <i class="fas fa-cart-arrow-down float-right"></i>
+        <span>{{amount}}</span>
+
+      </a>
+    </div>
+  </div>
+
+  <input class="form-control col-sm-6" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0 col-2" type="submit">Search</button>
+
+
+</nav>

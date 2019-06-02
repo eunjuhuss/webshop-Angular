@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { DataService } from './services/data.service';
-import { FormsModule } from '@angular/forms';
+
 //router 4, 라우팅컴퍼넌트를 가지고온다
 import { AppRoutingModule, routingComponents } from './app-routing.module';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './order/order.component';
@@ -19,6 +20,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HeaderComponent } from './header/header.component';
 import { CompleteComponent } from './complete/complete.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+// import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -35,14 +39,18 @@ import { AdminComponent } from './admin/admin.component';
     ProductsDetailComponent,
     HeaderComponent,
     CompleteComponent,
-    AdminComponent
+    AdminComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
-    FormsModule,
-    
+    FormsModule, 
+    ReactiveFormsModule,
+    // FormBuilder, 
+    // Validators, 
+   
     
     
     

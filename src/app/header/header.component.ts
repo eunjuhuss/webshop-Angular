@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   //   this.searchEvent.emit(query);
   // }
 
+  
+
   constructor(private dataService: DataService) { }
   
   emptyCart(){    
@@ -27,21 +29,19 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
-  
-
  
 
   ngOnInit() {
     let count = this.dataService.getProductFromCart();  
     let amount = 0;
-    for(let i = 0; i < count.length; i++){
-      let totalAmount = count[i].amount;
-      amount += totalAmount;
-      console.log(amount);
+    if(count){
+      for(let i = 0; i < count.length; i++){
+        let totalAmount = count[i].amount;
+        amount += totalAmount;
+        console.log(amount);
 
-    }
+      }
     return amount;
+    }
   }
-
 }

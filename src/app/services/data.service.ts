@@ -6,6 +6,8 @@ import { IData } from '../interfaces/idata';
 import { ICategory } from '../interfaces/icategory';
 import { ICart } from '../interfaces/ICart';
 import { IOrder } from '../interfaces/iorder';
+import { IAdminOrder } from '../interfaces/iadminorder';
+import { map } from 'rxjs/operators';
 
 @Injectable({
 
@@ -14,6 +16,10 @@ import { IOrder } from '../interfaces/iorder';
 })
 
 export class DataService implements IData{
+  deleteOrderByAdmin(id: number): Observable<IOrder[]> {
+    throw new Error("Method not implemented.");
+  }
+ 
  
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
   categoryUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/categories';
@@ -64,10 +70,11 @@ export class DataService implements IData{
     }
   }
 
-  removeProductFromCart(product){
+  removeProductFromCart(product:IProduct):void{
     let findProduct:ICart[] = this.getProductFromCart();
       for(let i = 0; i < findProduct.length; i++){
         if(findProduct[i].product.id === product.id){
+          console.log(product);
           findProduct.splice(i, 1);      
         }         
       }  
@@ -85,7 +92,21 @@ export class DataService implements IData{
 
   getOrderData():Observable<IOrder[]>{  
     return this.httpClient.get<IOrder[]>(this.orderUrl + '/?companyid=1'); 
-  } 
+  }
+
+  removeOrder(id: number): Observable<IOrder[]> {
+    return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
+
+  }
+
+  getOrderDetails(id: number): Observable<IOrder>{
+    // return this.getOrderData().pipe(map(adminDetails => 
+    //   adminDetails.find(order=>
+    //     order.id == id)));
+    return this.httpClient.get<IOrder>(this.orderUrl + '/'+ id);
+  }
+
+
 
   errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");

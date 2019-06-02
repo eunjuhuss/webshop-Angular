@@ -9,7 +9,9 @@
         <th scope="col">Total</th>
       </tr>
     </thead>
+
     <tbody>
+
       <tr *ngFor="let cartItem of cart">
         <td><img src="{{cartItem.product.imageUrl}}" width="60px;" height="100px;" alt={{cartItem.name}}></td>
         <td>{{cartItem.product.name}}</td>
@@ -19,40 +21,38 @@
       </tr>
     </tbody>
   </table>
+
   <div>
     <button type="submit" class="btn" (click)="emptyCart()">Empty Cart</button>
   </div>
 
-  <form class="orderForm">
+
+  <form [formGroup]="orderForm" class="orderForm">
     <h3>{{ getTotal() | currency:"$"}}</h3>
     <div class="border-line"></div>
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputName">Name</label>
-        <input type="text" class="form-control" placeholder="Name" #name>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" placeholder="Email" #email>
+      <div class="form-group col-md-12">
+        <label for="inputEmail">Email Address</label>
+        <input type="email" class="form-control" placeholder="email address" formControlName="emailAdress"><br>
+        <label for="swish">Payment Options</label><br>
+        <div>
+          <span>internet bank </span>
+          <input name="paymentMethod" value="internet bank" checked="checked" type="radio"
+            formControlName="paymentMethod">
+        </div>
+        <div>
+          <span>paypal </span>
+          <input name="paymentMethod" value="paypal" type="radio" formControlName="paymentMethod">
+        </div>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="inputState">PaymentMethod</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>cash</option>
-          <option>credit card</option>
-        </select>
-        <button (click)="orderMovies(name.value, email.value)" type="submit" class="btn order">Order</button>
-      </div>
-    </div>
+    <button type="submit" class="btn" [disabled]="!orderForm.valid" (click)="order()">order</button>
   </form>
 </div>
 <div class="thanks-container" *ngIf="!cart">
   <h3>cart is empty</h3>
-      <button class="btn btn-success my-2 my-lg-3" routerLink="/home" routerLinkActive="active">
-        <span>go to home</span>
-      </button>
+  <button class="btn btn-success my-2 my-lg-3" routerLink="/home" routerLinkActive="active">
+    <span>go to home</span>
+  </button>
 </div>

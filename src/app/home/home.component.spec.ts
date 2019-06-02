@@ -27,7 +27,8 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it("should display all products", async(() => {    
+  it("should display all products", async(() => {
+    expect(component.products.length).toBeGreaterThan(0);  
     expect(component.products.length).toEqual(3);
   }));
 

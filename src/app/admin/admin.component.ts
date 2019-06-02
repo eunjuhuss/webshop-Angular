@@ -1,6 +1,6 @@
 import {  Component, OnInit } from '@angular/core';
 import {  DataService } from '../services/data.service';
-import {  IOrder } from '../interfaces/iorder';
+import {  IOrder, IOrderRow } from '../interfaces/iorder';
 import {  IProduct } from '../interfaces/iproduct';
 
 @Component({
@@ -11,15 +11,16 @@ import {  IProduct } from '../interfaces/iproduct';
 export class AdminComponent implements OnInit {
 
   public orderDetails: IOrder[];
-  // public singleProductDetail: IProduct[] = [];
-
+  public orderRows: IOrderRow[];
+  
+  
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.dataService.getOrderData()
       .subscribe(orderList => {
           this.orderDetails = orderList;
-          console.log(this.orderDetails);
+          console.log(this.orderDetails);          
         },
         err => {
           console.log(err.message);
@@ -28,13 +29,35 @@ export class AdminComponent implements OnInit {
           console.log('completed');
         }
       );
-    // this.orderDetails.map((order) => {
-    //   this.dataService.getData().subscribe(films => {
-    //     let film = films.find(f => f.id === order.orderRows[0].ProductId);
-    //     this.singleProductDetail.push(film);
-    //     console.log(film.id);
-    //   })
-    // });
-    console.log(this.orderDetails);
   }
-}
+
+
+
+
+
+//   deleteOrder(id){   
+//     let singleOrders = this.orderDetails;
+//     console.log(singleOrders);
+//     this.dataService.removeOrder(id).subscribe(data => {
+//       for(var i = 0;i < singleOrders.length; i++) {
+//         if(singleOrders[i].id == id) {
+//           singleOrders.splice(i, 1);
+//         }
+//       }
+//   });
+// }
+
+    
+    //   let findProduct:ICart[] = this.getProductFromCart();
+    //     for(let i = 0; i < findProduct.length; i++){
+    //       if(findProduct[i].product.id === product.id){
+    //         console.log(product);
+    //         findProduct.splice(i, 1);      
+    //       }         
+   
+    //     localStorage.setItem("ShoppingCart", JSON.stringify(findProduct));
+    //   }
+      
+  }
+
+
