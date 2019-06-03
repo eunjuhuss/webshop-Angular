@@ -10,11 +10,10 @@ export interface IData {
     getMovie(id: number): Observable<IProduct>;
     addProductToCart(product:IProduct);
     getProductFromCart();
-    // removeProductFromCart(product:IProduct);
+    removeProductFromCart(product:IProduct):void;
     removeAllProductFromCart():ICart[];
-    checkoutOrders(order: IOrder): Observable<IOrder>;
+    // checkoutOrders(order: IOrder): Observable<IOrder>;
     getOrderData():Observable<IOrder[]>;
-    // removeOrder(id: number): Observable<IOrder[]>;
     getOrderData(): Observable<IOrder[]>;
     getOrderDetails(id: number): Observable<IOrder>;
     

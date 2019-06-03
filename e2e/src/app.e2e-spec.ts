@@ -8,10 +8,17 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+
+   it('should display navbar', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to eunju-webshop-project!');
+    expect(page.getNavElement()).toEqual('FILM');
   });
+
+  it('should display not found', () => {
+    page.navigateToRoute('/**');
+    expect(page.getParagraphText()).toEqual('page-not-found works!');
+  });
+
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

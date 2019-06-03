@@ -27,4 +27,8 @@ describe('AdminComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should print our order list', () => {
+    expect(component.orderDetails.length).toBe(3);
+  });
 });

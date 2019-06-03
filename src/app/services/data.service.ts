@@ -7,12 +7,8 @@ import { ICategory } from '../interfaces/icategory';
 import { ICart } from '../interfaces/ICart';
 import { IOrder } from '../interfaces/iorder';
 
-
-
 @Injectable({
-
   providedIn: 'root'
-
 })
 
 export class DataService implements IData{
@@ -61,7 +57,6 @@ export class DataService implements IData{
       }
     }
 
-
   getProductFromCart(){  
     if(localStorage.getItem("ShoppingCart") === 'undefined'){
       return [];    
@@ -93,16 +88,10 @@ export class DataService implements IData{
   getOrderData():Observable<IOrder[]>{  
     return this.httpClient.get<IOrder[]>(this.orderUrl + '/?companyid=1'); 
   }
-
-  // removeOrder(id: number): Observable<IOrder[]> {
-  //   return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
-
-  // }
-
+ 
   getOrderDetails(id: number): Observable<IOrder>{
     return this.httpClient.get<IOrder>(this.orderUrl + '/'+ id);
   }
-
 
   errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");

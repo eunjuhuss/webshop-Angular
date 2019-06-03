@@ -33,11 +33,12 @@ describe('ProductsDetailComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  it('should return id', () => {
+  it('should return product name', () => {
     component.getProductsDetails(2);
     expect(component.product).toBeDefined();
     expect(component.product.name).toBe('second batman');
-
   });
+
+
 
 });

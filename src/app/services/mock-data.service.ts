@@ -107,7 +107,8 @@ export class MockDataService implements IData{
       for(let i = 0; i < cart.length; i++){
         if(cart[i].product.id === product.id){
           cart[i].amount++;       
-          cart[i].total += cart[i].product.price;   addedProduct = true;          
+          cart[i].total += cart[i].product.price;   
+          addedProduct = true;          
         }         
       }    
       if(addedProduct === false) {
@@ -121,37 +122,24 @@ export class MockDataService implements IData{
     return this.item = this.localStorageItems;
   } 
 
-
-  removeProductFromCart(cartItem:number){    
+  removeProductFromCart(cartItem:IProduct):void{    
       for(let i = 0; i < this.item.length; i++){
-        if(this.item[i].product.id === cartItem){
+        if(this.item[i].product.id === cartItem.id){
           this.item.splice(i, 1);      
         }         
       }  
-      return this.item;
+  } 
+
+  removeAllProductFromCart(): ICart[]{   
+    return this.localStorageItems =[];
   }
 
  
-
-  removeAllProductFromCart(): ICart[]{   
-    return this.localStorageItems=[];
-  }
 
   getOrderData():Observable<IOrder[]>{  
     return of(this.orderDataMock);
   }
 
-   checkoutOrders(order: IOrder): Observable<IOrder> {
-    throw new Error("Method not implemented.");
-  }
-
-
- 
-
-  // removeOrder(id: number): Observable<IOrder[]> {
-  //   return this.httpClient.get<IOrder[]>(this.orderUrl +'/' + id);
-
-  // }
 
   getOrderDetails(id: number): Observable<IOrder>{
     return of(this.orderDataMock.find(x=>x.id===id));

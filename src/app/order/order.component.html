@@ -7,6 +7,7 @@
         <th scope="col">Price</th>
         <th scope="col">Amount</th>
         <th scope="col">Total</th>
+        <th scope="col">Remove</th>
       </tr>
     </thead>
 
@@ -18,6 +19,7 @@
         <td>{{cartItem.product.price | currency:"$"}}</td>
         <td>{{cartItem.amount}}</td>
         <td>{{cartItem.product.price * cartItem.amount | currency:"$"}}</td>
+        <td><i class="fas fa-trash-alt" (click) = removeItem(cartItem.product)></i></td>
       </tr>
     </tbody>
   </table>

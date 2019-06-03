@@ -36,6 +36,5 @@ describe('HomeComponent', () => {
     expect(component.sortByCategories.length).toBe(1);
     component.filtredProducts[''];
     expect(component.filtredProducts.length).toBe(3);
-
   }));
 });

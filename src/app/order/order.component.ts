@@ -22,31 +22,30 @@ export class OrderComponent implements OnInit {
   public cart:ICart[] = [];
   public total: number;
   public orderRows:IOrderRow[] = [];
-  // bara 1
+  // to get only one order
   public orders:IOrder;
   public orderTime = moment().format('LLLL');
 
   orderForm = this.fb.group({
     emailAdress: ['', Validators.required],  
-    paymentMethod: ['', Validators.required] 
-
+    paymentMethod: ['', Validators.required]
   });
 
- 
 
   constructor(private dataService: DataService, private router: Router, private fb: FormBuilder) { }
 
-  getProducts() {
-    this.dataService.getData()
-    .subscribe(data => {
-      this.products = data; 
-      this.productAddedTocart = this.products;
-    });
-  }
+  // getProducts() {
+  //   this.dataService.getData()
+  //   .subscribe(data => {
+  //     this.products = data; 
+  //     this.productAddedTocart = this.products;
+  //   });
+  // }
  
 
-  removeItem(product){ 
-      this.dataService.removeProductFromCart(product);    
+  removeItem(product:IProduct){ 
+    this.dataService.removeProductFromCart(product);
+    this.cart = this.dataService.getProductFromCart();   
   }
 
 
@@ -63,14 +62,13 @@ export class OrderComponent implements OnInit {
         let totalPrice = this.cart[i].total;
         this.total += totalPrice;
       }
-
       return this.total;
       }else{
       return this.cart = [];
     }
   }
 
-  order(){
+  order(){    
      for(var i=0; i< this.cart.length; i++){
       this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
     };
@@ -98,52 +96,8 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/complete']);
   }
 
-
-
-  // orderMovies(email){
-  //   console.log(email);
-  //   event.preventDefault();
-
-  //   orderForm = this.fb.group({
-  //     emailAdress: ['', Validators.required],  
-  //     paymentMethod: ['', Validators.required] 
-  
-  //   });
-
-
-  //   for(var i=0; i< this.cart.length; i++){
-  //     this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
-
-  //   };
-
-  //   this.orders = {
-  //     id: 0, 
-  //     companyId: 1,
-  //     created: this.orderTime,
-  //     createdBy: name,
-  //     paymentMethod: 'bankID',
-  //     totalPrice: this.total,
-  //     //olika betalt status
-  //     status: 0,
-  //     orderRows: this.orderRows
-  //   }
-  //   console.log(this.orders);
-
-  //   this.dataService.checkoutOrders(this.orders).subscribe(
-  //     response => {console.log(response);},
-  //     err => {console.log(err.message);},
-  //     ()=> {console.log('completed');}
-  //   );
-
-  //   localStorage.clear();
-  //   this.router.navigate(['/complete']);
-  // }
-
-
-
-
   ngOnInit() {
     this.cart = this.dataService.getProductFromCart();
-    console.log(this.cart); 
+    console.log(this.cart);     
   }
 }

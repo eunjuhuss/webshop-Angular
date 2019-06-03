@@ -56,7 +56,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     
     HttpClientModule,
   //router 6, imports에 AppRoutingModule 를 넣어준다
-    AppRoutingModule
+    AppRoutingModule,
     
   ],
   providers: [ DataService ],
