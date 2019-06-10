@@ -9,7 +9,7 @@
           <th class="th-sm" scope="col">paymentMethod</th>
           <th class="th-sm" scope="col">totalPrice</th>
           <th class="th-sm" scope="col">detail</th>
-          <!-- <th scope="col">remove</th> -->
+          <!-- <th class="th-sm" scope="col">delete</th> -->        
         </tr>
       </thead>
       <tbody>
@@ -17,13 +17,12 @@
           <td>{{singleOrderDetail.id}}</td>
           <td>{{singleOrderDetail.created}}</td>
           <td>{{singleOrderDetail.createdBy}}</td>
-          <td>{{singleOrderDetail.paymentMethod}}</td>
-          
+          <td>{{singleOrderDetail.paymentMethod}}</td>          
           <td>{{singleOrderDetail.totalPrice | currency:"$"}}</td>
-          <a routerLink="/orderDetails/{{singleOrderDetail.id}}">
+          <td><a routerLink="/orderDetails/{{singleOrderDetail.id}}">
           <button class="btn btn-success my-2 my-lg-3">order details</button>
-        </a>
-          <!-- <button class="btn btn-success my-2 my-lg-3" (click)=deleteOrder()>Remove</button> -->
+          </a></td>
+          <!-- <td><button class="btn btn-success my-2 my-lg-3" (click)=deleteOrder()>delete order</button></td> -->
         </tr>
       </tbody>
     </table>

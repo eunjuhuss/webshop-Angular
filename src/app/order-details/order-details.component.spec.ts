@@ -27,4 +27,11 @@ describe('OrderDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should get oreder details by id', () => {
+    component.getOrderDetails(900);
+    expect(component.orderDetails.id).toBe(900);  
+  });
+
+ 
 });

@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   public productAddedTocart = [];
   public cart:ICart[] = [];
   public total: number;
-  public orderRows:IOrderRow[] = [];
+  // public orderRows:IOrderRow[] = [];
   // to get only one order
   public orders:IOrder;
   public orderTime = moment().format('LLLL');
@@ -68,9 +68,11 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  order(){    
+  order(){
+    const orderRows:IOrderRow[] = [];
+    
      for(var i=0; i< this.cart.length; i++){
-      this.orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
+      orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
     };
 
     this.orders = {
@@ -82,7 +84,7 @@ export class OrderComponent implements OnInit {
       totalPrice: this.total,
       //olika betalt status
       status: 0,
-      orderRows: this.orderRows
+      orderRows: orderRows
     }
     console.log(this.orders);
 

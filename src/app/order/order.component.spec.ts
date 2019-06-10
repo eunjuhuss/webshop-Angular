@@ -51,5 +51,20 @@ describe('OrderComponent', () => {
   });
 
 
+  it('should remove all products', () => {
+    expect(component.cart.length).toBe(1);
+    component.emptyCart();
+    expect(component.cart.length).toBe(0);  
+  });
+
 
 });
+
+
+
+
+
+  
+  
+
+

@@ -31,10 +31,6 @@ export class AdminComponent implements OnInit {
       );
   }
 
-
-
-
-
 //   deleteOrder(id){   
 //     let singleOrders = this.orderDetails;
 //     console.log(singleOrders);
@@ -46,18 +42,7 @@ export class AdminComponent implements OnInit {
 //       }
 //   });
 // }
-
-    
-    //   let findProduct:ICart[] = this.getProductFromCart();
-    //     for(let i = 0; i < findProduct.length; i++){
-    //       if(findProduct[i].product.id === product.id){
-    //         console.log(product);
-    //         findProduct.splice(i, 1);      
-    //       }         
-   
-    //     localStorage.setItem("ShoppingCart", JSON.stringify(findProduct));
-    //   }
-      
-  }
+ 
+}
 
 
