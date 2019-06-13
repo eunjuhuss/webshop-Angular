@@ -26,11 +26,13 @@ describe('OrderComponent', () => {
   });
 
   it('should create', () => {
+    console.log("cart1",component.cart);
     expect(component).toBeTruthy();
   });
 
   it('should remove a product from cart', () => {
     expect(component.cart.length).toBe(1);
+    console.log("cart2",component.cart);
     component.removeItem({
       id:1,
       name:'first batman',
@@ -50,14 +52,28 @@ describe('OrderComponent', () => {
     expect(component.cart.length).toBe(0);
   });
 
-
-  it('should remove all products', () => {
+  it('should remove all products from cart', () => {
     expect(component.cart.length).toBe(1);
     component.emptyCart();
     expect(component.cart.length).toBe(0);  
   });
 
+  it('should calculate products total price', () => {
+    expect(component.cart.length).toBe(1);
+    console.log("Running test on total price");
+    component.getTotal();
+    expect(component.total).toBe(19900);  
+  });
+  
+  it('should be invaild when form is empty', () => {
+    expect(component.orderForm.valid).toBeFalsy(); 
+  });
 
+  it('should email field validity', () => {
+    let email = component.orderForm.controls['emailAdress'];
+    expect(email.valid).toBeFalsy(); 
+  });
+ 
 });
 
 

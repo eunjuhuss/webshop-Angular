@@ -12,9 +12,7 @@ import { IOrder } from '../interfaces/iorder';
 })
 
 export class DataService implements IData{
-  deleteOrderByAdmin(id: number): Observable<IOrder[]> {
-    throw new Error("Method not implemented.");
-  }
+ 
  
  
   filmsUrl: string = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
@@ -36,7 +34,7 @@ export class DataService implements IData{
     return this.httpClient.get<IProduct>(this.filmsUrl + '/'+ id); 
   }
 
-  addProductToCart(product:IProduct):void{
+  addProductToCart(product:IProduct): ICart[] {
     let cart: ICart[] = this.getProductFromCart();
     let addedProduct = false;
     if(cart != null) {
@@ -55,13 +53,15 @@ export class DataService implements IData{
       else {    
         localStorage.setItem("ShoppingCart", JSON.stringify([{ product: product, amount: 1, total: product.price}]));
       }
+
+      return cart;
     }
 
-  getProductFromCart(){  
-    if(localStorage.getItem("ShoppingCart") === 'undefined'){
+  getProductFromCart(): ICart[]{  
+    if(!localStorage.getItem("ShoppingCart")){
       return [];    
     }else {
-      return JSON.parse(localStorage.getItem("ShoppingCart"))
+      return JSON.parse(localStorage.getItem("ShoppingCart")) || [];
     }
   }
 
@@ -80,7 +80,7 @@ export class DataService implements IData{
     localStorage.removeItem("ShoppingCart"); 
     return this.getProductFromCart();
   }
-  // bara 1 order därför att [] behövs inte!
+
   checkoutOrders(order: IOrder): Observable<IOrder>{
     return this.httpClient.post<IOrder>(this.orderUrl, order);
   }

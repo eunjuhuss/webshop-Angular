@@ -27,14 +27,26 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
+  it("should create", async(() => {
+    expect(component).toBeTruthy(); 
+  }));
+
   it("should display all products", async(() => {
     expect(component.products.length).toBeGreaterThan(0);  
     expect(component.products.length).toEqual(3);
   }));
 
-  it("should products sort by categories", async(() => {    
-    expect(component.sortByCategories.length).toBe(1);
-    component.filtredProducts[''];
-    expect(component.filtredProducts.length).toBe(3);
-  }));
+
+  it('should add a product and remove an order product', () => {
+    expect(component.productAddedTocart.length).toBe(0);
+    const service = new MockDataService();
+    service.getData().subscribe((product) => {
+      component.addToCart(product[1]);
+      expect(component.productAddedTocart.length).toBe(1);
+      component.removeItem(product[1]);
+      console.log("product: ", component.productAddedTocart);      
+      expect(component.productAddedTocart.length).toBe(0);
+    });   
+  });
+
 });

@@ -21,7 +21,7 @@ export class OrderDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {    //  Params      
       let id = params['id'];    
       this.getOrderDetails(id); 
-      });     
+    });     
   }
   
   getOrderDetails(id:number){
@@ -39,21 +39,5 @@ export class OrderDetailsComponent implements OnInit {
       console.log(this.productName); 
       } 
     ); 
-
-//     let productName = this.productName;
-//     for(let i = 0; i < productName.length; i++){
-//       if(productName[i].id === this.orderDetails.id){
-//         console.log(productName);         
-//       }         
-//  }
-
-//  getProductNames(){
-//   this.dataService.getData()
-//   .subscribe(data => {
-//     console.log(data);
-//     this.productName = data;
-//     console.log(this.productName);
-//   }); 
-// }
-}
+  }
 }

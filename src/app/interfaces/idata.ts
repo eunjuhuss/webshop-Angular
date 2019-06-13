@@ -9,7 +9,7 @@ export interface IData {
     getCategory(): Observable<ICategory[]>;
     getMovie(id: number): Observable<IProduct>;
     addProductToCart(product:IProduct);
-    getProductFromCart();
+    getProductFromCart(): ICart[];
     removeProductFromCart(product:IProduct):void;
     removeAllProductFromCart():ICart[];
     // checkoutOrders(order: IOrder): Observable<IOrder>;

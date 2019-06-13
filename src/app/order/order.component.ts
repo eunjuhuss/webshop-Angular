@@ -19,10 +19,8 @@ export class OrderComponent implements OnInit {
 
   public products = [];
   public productAddedTocart = [];
-  public cart:ICart[] = [];
-  public total: number;
-  // public orderRows:IOrderRow[] = [];
-  // to get only one order
+  public cart: ICart[] = [];
+  public total: number = 0;
   public orders:IOrder;
   public orderTime = moment().format('LLLL');
 
@@ -32,22 +30,14 @@ export class OrderComponent implements OnInit {
   });
 
 
-  constructor(private dataService: DataService, private router: Router, private fb: FormBuilder) { }
-
-  // getProducts() {
-  //   this.dataService.getData()
-  //   .subscribe(data => {
-  //     this.products = data; 
-  //     this.productAddedTocart = this.products;
-  //   });
-  // }
- 
+  constructor(private dataService: DataService, 
+    private router: Router, 
+    private fb: FormBuilder) { }
 
   removeItem(product:IProduct){ 
     this.dataService.removeProductFromCart(product);
     this.cart = this.dataService.getProductFromCart();   
   }
-
 
   emptyCart(){    
     this.dataService.removeAllProductFromCart(); 
@@ -57,21 +47,23 @@ export class OrderComponent implements OnInit {
   getTotal(){
     this.total = 0;
     this.cart = this.dataService.getProductFromCart();
-    if(this.cart.length !== null){
+    console.log("getTotal(), cart: ", this.cart);
+    
+    if(this.cart !== null) {
       for(let i = 0; i < this.cart.length; i++){
-        let totalPrice = this.cart[i].total;
+        let totalPrice = this.cart[i].product.price * this.cart[i].amount;
+        console.log("Old total: ", this.total);
+        
         this.total += totalPrice;
+        console.log("New totalprice: ", this.total);
       }
-      return this.total;
-      }else{
-      return this.cart = [];
     }
   }
 
   order(){
     const orderRows:IOrderRow[] = [];
     
-     for(var i=0; i< this.cart.length; i++){
+    for(var i=0; i< this.cart.length; i++){
       orderRows.push({ProductId: this.cart[i].product.id, Amount: this.cart[i].amount});
     };
 
@@ -82,24 +74,22 @@ export class OrderComponent implements OnInit {
       createdBy: this.orderForm.get('emailAdress').value,
       paymentMethod: this.orderForm.get('paymentMethod').value,
       totalPrice: this.total,
-      //olika betalt status
       status: 0,
       orderRows: orderRows
     }
-    console.log(this.orders);
-
+   
     this.dataService.checkoutOrders(this.orders).subscribe(
       response => {console.log(response);},
       err => {console.log(err.message);},
       ()=> {console.log('completed');}
     );
-
+    
     localStorage.clear();
     this.router.navigate(['/complete']);
   }
 
   ngOnInit() {
     this.cart = this.dataService.getProductFromCart();
-    console.log(this.cart);     
+    console.log('Order component: ', this.cart);     
   }
 }

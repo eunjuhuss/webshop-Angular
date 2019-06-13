@@ -31,18 +31,6 @@ export class AdminComponent implements OnInit {
       );
   }
 
-//   deleteOrder(id){   
-//     let singleOrders = this.orderDetails;
-//     console.log(singleOrders);
-//     this.dataService.removeOrder(id).subscribe(data => {
-//       for(var i = 0;i < singleOrders.length; i++) {
-//         if(singleOrders[i].id == id) {
-//           singleOrders.splice(i, 1);
-//         }
-//       }
-//   });
-// }
- 
-}
+ }
 
 

@@ -11,12 +11,6 @@ import { IOrder } from '../interfaces/iorder';
 })
 export class MockDataService implements IData{
  
-  // removeOrder(id: number): Observable<IOrder[]> {
-  //   throw new Error("Method not implemented.");
-  // }
-  // getData(): Observable<IProduct[]> {
-  //   throw new Error("Method not implemented.");
-  // }
   item: ICart[] = [];
   orders: IOrder[] = [];
   products:IProduct[]=[{
@@ -80,7 +74,7 @@ export class MockDataService implements IData{
   localStorageItems:ICart[]=[{
     product: this.products[0],
     amount:100,
-    total:1
+    total:100 
   }];
 
   orderDataMock: IOrder[] = [
@@ -115,10 +109,9 @@ export class MockDataService implements IData{
         cart.push({ product: product, amount: 1, total: product.price}); 
       }
     }
-  
   }
 
-  getProductFromCart() {  
+  getProductFromCart() : ICart[] {  
     return this.item = this.localStorageItems;
   } 
 
@@ -134,16 +127,15 @@ export class MockDataService implements IData{
     return this.localStorageItems =[];
   }
 
- 
-
   getOrderData():Observable<IOrder[]>{  
     return of(this.orderDataMock);
   }
 
-
   getOrderDetails(id: number): Observable<IOrder>{
     return of(this.orderDataMock.find(x=>x.id===id));
   }
+
+
 
   constructor() { }
 }

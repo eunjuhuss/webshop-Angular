@@ -10,7 +10,6 @@ import { IProduct } from '../interfaces/iproduct';
   styleUrls: ['./products-detail.component.css']
 })
 export class ProductsDetailComponent implements OnInit {
-  // it takes a time to fetch a detail product from url, so need to use this empty object
  
   public product: IProduct = {    
       id:null,
@@ -30,14 +29,7 @@ export class ProductsDetailComponent implements OnInit {
       }]
     };
 
-  // private items: IProduct[] = [];
-  // private total: number = 0;
-  
-  //inject
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { }
-  // read parameter
- 
-
 
   getProductsDetails(id:number){
     this.dataService.getMovie(id)
@@ -52,17 +44,15 @@ export class ProductsDetailComponent implements OnInit {
     this.dataService.addProductToCart(product);         
   }
 
-  removeItem(product){
+  removeItem(product:IProduct):void{
     this.dataService.removeProductFromCart(product);
   }
 
 
   ngOnInit() {
-    //paramMap (from url)    
-    //hämta products id from home html
-    this.route.params.subscribe(params => {    //  Params      
-    let id = params['id'];    
-    this.getProductsDetails(id); 
+    this.route.params.subscribe(params => { 
+      let id = params['id'];    
+      this.getProductsDetails(id); 
     });
   }
 

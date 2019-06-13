@@ -39,6 +39,7 @@ describe('ProductsDetailComponent', () => {
     expect(component.product.name).toBe('second batman');
   });
 
+ 
 
-
+ 
 });

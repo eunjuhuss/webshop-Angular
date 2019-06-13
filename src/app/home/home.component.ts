@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MockDataService } from '../services/mock-data.service';
 import { DataService } from '../services/data.service';
 import { IProduct } from '../interfaces/iproduct';
+import { ICart } from '../interfaces/icart';
 
 
 
@@ -14,96 +15,48 @@ import { IProduct } from '../interfaces/iproduct';
 })
 export class HomeComponent implements OnInit {
 
-
   public products = [];
-  // public categorys = [];
-
   public filtredProducts = [];
-  public productAddedTocart = [];
+  public productAddedTocart: ICart[] = [];
   public searchProducts: IProduct[];
 
   constructor(private dataService: DataService) { }
-
-
 
   displayAllProducts() {
     this.dataService.getData()
     .subscribe(data => {
       this.products = data;
       this.filtredProducts = this.products;
-      this.productAddedTocart = this.products;
     });
-
   }
 
-  sortByCategories(event) {
-    console.log(event.target.id);
-    //rensat alla producter    
-    //to match the productCategoryId and catergoryId     
-    
-    //this.findCategoryId();   
-
+  sortByCategories(event:any) {
     let sortById = this.products;
     this.filtredProducts=[];
     console.log(this.filtredProducts);
 
     for(let i = 0; i < sortById.length; i++){         
       let childArray = sortById[i].productCategory;        
-      for(let j = 0; j < childArray.length; j++){
-        console.log(childArray[j]);          
+      for(let j = 0; j < childArray.length; j++){              
         if(event.target.id == childArray[j].categoryId){
-          // for(let c = 0; c < categoryId.length; c++){
-          //   if(categoryId[c].id === childArray[j].categoryId){
-              this.filtredProducts.push(sortById[i]); 
-              console.log(sortById[i]);
-              console.log(event.target.id);                    
+              this.filtredProducts.push(sortById[i]);                 
               }else {
                 console.log("no mached films");         
-              }         
-                     
+              }                           
         }    
       }       
     }
 
-
-
-    
-  
-
- 
-
-     
-
-
   addToCart(product:IProduct){
-    this.dataService.addProductToCart(product);         
+    this.productAddedTocart = this.dataService.addProductToCart(product);         
   }
 
-  removeItem(product){
+  removeItem(product:IProduct){
     this.dataService.removeProductFromCart(product);
+    this.productAddedTocart = this.dataService.getProductFromCart();
   }
 
-    
-    // public counter : number = 0;
-    
-    // add(item){
-    //   this.counter += 1;
-    //   console.log(item);
-    // }
-    
-    // delete(item){
-    //   if (this.counter > 0){
-    //     this.counter -= 1;
-    //   }
-      
-    // }
-
-    ngOnInit() {
-      this.displayAllProducts();
-      // this.sortByCategories(event);
-      
-    }
-
- 
-
+  ngOnInit() {
+    this.displayAllProducts(); 
+  }
 }
